@@ -83,6 +83,8 @@
 
     <modules>
         <module>presto-example-http</module>
+        <module>presto-example-hana</module>
+        <module>presto-mysql</module>
     </modules>
 
     <dependencyManagement>
