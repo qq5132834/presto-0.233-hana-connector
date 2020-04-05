@@ -10,6 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="redstar.hana-1.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.presto:presto-base-jdbc:0.233" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:bootstrap:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:log:0.190" level="project" />
@@ -30,6 +31,15 @@
     <orderEntry type="library" name="Maven: com.google.inject:guice:4.2.2" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: sap:hana:1.1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/redstar.hana-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.facebook.presto:presto-spi:0.233" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.openjdk.jol:jol-core:0.2" level="project" />

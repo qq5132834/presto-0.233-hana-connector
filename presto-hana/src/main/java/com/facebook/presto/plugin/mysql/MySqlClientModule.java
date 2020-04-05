@@ -18,13 +18,8 @@ import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
 import com.facebook.presto.plugin.jdbc.JdbcClient;
 import com.google.inject.Binder;
 import com.google.inject.Scopes;
-import com.mysql.jdbc.Driver;
-
-import java.sql.SQLException;
-import java.util.Properties;
 
 import static com.facebook.airlift.configuration.ConfigBinder.configBinder;
-import static com.google.common.base.Preconditions.checkArgument;
 
 public class MySqlClientModule
         extends AbstractConfigurationAwareModule
@@ -39,14 +34,14 @@ public class MySqlClientModule
 
     private static void ensureCatalogIsEmpty(String connectionUrl)
     {
-        try {
-            Driver driver = new Driver();
-            Properties urlProperties = driver.parseURL(connectionUrl, null);
-            checkArgument(urlProperties != null, "Invalid JDBC URL for SAP HANA connector");
-            checkArgument(driver.database(urlProperties) == null, "Database (catalog) must not be specified in JDBC URL for SAP HANA connector");
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Driver driver = new Driver();
+//            Properties urlProperties = driver.parseURL(connectionUrl, null);
+//            checkArgument(urlProperties != null, "Invalid JDBC URL for SAP HANA connector");
+//            checkArgument(driver.database(urlProperties) == null, "Database (catalog) must not be specified in JDBC URL for SAP HANA connector");
+//        }
+//        catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
