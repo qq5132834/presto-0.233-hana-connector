@@ -30,7 +30,6 @@
     <orderEntry type="library" name="Maven: com.google.inject:guice:4.2.2" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.48" level="project" />
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.facebook.presto:presto-spi:0.233" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.openjdk.jol:jol-core:0.2" level="project" />
@@ -186,6 +185,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.jodah:expiringmap:0.5.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.197" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:testing-mysql-server-5:0.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: mysql:mysql-connector-java:5.1.48" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:testing-mysql-server-base:0.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.airlift:command:0.3" level="project" />
   </component>
