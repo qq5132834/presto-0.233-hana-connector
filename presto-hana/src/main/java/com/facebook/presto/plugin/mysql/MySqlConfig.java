@@ -31,7 +31,7 @@ public class MySqlConfig
         return autoReconnect;
     }
 
-    @Config("mysql.auto-reconnect")
+    @Config("hana.auto-reconnect")
     public MySqlConfig setAutoReconnect(boolean autoReconnect)
     {
         this.autoReconnect = autoReconnect;
@@ -44,7 +44,7 @@ public class MySqlConfig
         return maxReconnects;
     }
 
-    @Config("mysql.max-reconnects")
+    @Config("hana.max-reconnects")
     public MySqlConfig setMaxReconnects(int maxReconnects)
     {
         this.maxReconnects = maxReconnects;
@@ -56,7 +56,7 @@ public class MySqlConfig
         return connectionTimeout;
     }
 
-    @Config("mysql.connection-timeout")
+    @Config("hana.connection-timeout")
     public MySqlConfig setConnectionTimeout(Duration connectionTimeout)
     {
         this.connectionTimeout = connectionTimeout;
