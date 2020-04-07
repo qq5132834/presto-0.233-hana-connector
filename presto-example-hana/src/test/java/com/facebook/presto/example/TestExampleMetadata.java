@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.presto.spi.ColumnMetadata;
 import com.facebook.presto.spi.ConnectorTableMetadata;
 import com.facebook.presto.spi.PrestoException;
@@ -52,6 +53,8 @@ public class TestExampleMetadata
         assertNotNull(metadataUrl, "metadataUrl is null");
         ExampleClient client = new ExampleClient(new ExampleConfig().setMetadata(metadataUrl.toURI()), CATALOG_CODEC);
         metadata = new ExampleMetadata(new ExampleConnectorId(CONNECTOR_ID), client);
+        System.out.println(JSONObject.toJSONString(metadata));
+        System.out.println(JSONObject.toJSONString(metadata.listSchemaNames()));
     }
 
     @Test

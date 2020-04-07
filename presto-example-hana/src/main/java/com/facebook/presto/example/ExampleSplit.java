@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ConnectorSplit;
 import com.facebook.presto.spi.HostAddress;
 import com.facebook.presto.spi.schedule.NodeSelectionStrategy;
@@ -29,6 +30,7 @@ import static java.util.Objects.requireNonNull;
 public class ExampleSplit
         implements ConnectorSplit
 {
+    private static final Logger log = Logger.get(ExampleSplit.class);
     private final String connectorId;
     private final String schemaName;
     private final String tableName;
@@ -42,6 +44,7 @@ public class ExampleSplit
             @JsonProperty("tableName") String tableName,
             @JsonProperty("uri") URI uri)
     {
+        log.info("connectorId:" + connectorId + ",schemaName:" + schemaName + ",tableName:" + tableName);
         this.schemaName = requireNonNull(schemaName, "schema name is null");
         this.connectorId = requireNonNull(connectorId, "connector id is null");
         this.tableName = requireNonNull(tableName, "table name is null");
@@ -53,47 +56,55 @@ public class ExampleSplit
     @JsonProperty
     public String getConnectorId()
     {
+        log.info("getConnectorId");
         return connectorId;
     }
 
     @JsonProperty
     public String getSchemaName()
     {
+        log.info("getSchemaName");
         return schemaName;
     }
 
     @JsonProperty
     public String getTableName()
     {
+        log.info("getTableName");
         return tableName;
     }
 
     @JsonProperty
     public URI getUri()
     {
+        log.info("getUri");
         return uri;
     }
 
     @Override
     public NodeSelectionStrategy getNodeSelectionStrategy()
     {
+        log.info("getNodeSelectionStrategy");
         return NO_PREFERENCE;
     }
 
     public List<HostAddress> getAddresses()
     {
+        log.info("getAddresses");
         return addresses;
     }
 
     @Override
     public List<HostAddress> getPreferredNodes(List<HostAddress> sortedCandidates)
     {
+        log.info("getPreferredNodes");
         return addresses;
     }
 
     @Override
     public Object getInfo()
     {
+        log.info("getInfo");
         return this;
     }
 }

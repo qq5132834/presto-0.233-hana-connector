@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
 public class ExampleTable
+        implements Serializable
 {
     private final String name;
     private final List<ExampleColumn> columns;

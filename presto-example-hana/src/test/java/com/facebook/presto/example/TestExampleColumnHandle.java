@@ -29,6 +29,7 @@ public class TestExampleColumnHandle
     public void testJsonRoundTrip()
     {
         String json = COLUMN_CODEC.toJson(columnHandle);
+        System.out.println(json);
         ExampleColumnHandle copy = COLUMN_CODEC.fromJson(json);
         assertEquals(copy, columnHandle);
     }

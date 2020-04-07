@@ -13,6 +13,8 @@
  */
 package com.facebook.presto.example;
 
+import com.alibaba.fastjson.JSONObject;
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ColumnHandle;
 import com.facebook.presto.spi.ColumnMetadata;
 import com.facebook.presto.spi.ConnectorSession;
@@ -43,6 +45,7 @@ import static java.util.Objects.requireNonNull;
 public class ExampleMetadata
         implements ConnectorMetadata
 {
+    private static final Logger log = Logger.get(ExampleMetadata.class);
     private final String connectorId;
 
     private final ExampleClient exampleClient;
@@ -50,6 +53,7 @@ public class ExampleMetadata
     @Inject
     public ExampleMetadata(ExampleConnectorId connectorId, ExampleClient exampleClient)
     {
+        log.info("ExampleMetadata.constructor");
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.exampleClient = requireNonNull(exampleClient, "client is null");
     }
@@ -57,10 +61,12 @@ public class ExampleMetadata
     @Override
     public List<String> listSchemaNames(ConnectorSession session)
     {
-        return listSchemaNames();
+        List<String> list = listSchemaNames();
+        log.info("listSchemaNames.list:" + JSONObject.toJSONString(list));
+        return list;
     }
 
-    public List<String> listSchemaNames()
+    private List<String> listSchemaNames()
     {
         return ImmutableList.copyOf(exampleClient.getSchemaNames());
     }
@@ -68,6 +74,7 @@ public class ExampleMetadata
     @Override
     public ExampleTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
     {
+        log.info("getTableHandle");
         if (!listSchemaNames(session).contains(tableName.getSchemaName())) {
             return null;
         }
@@ -83,6 +90,7 @@ public class ExampleMetadata
     @Override
     public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns)
     {
+        log.info("getTableLayouts");
         ExampleTableHandle tableHandle = (ExampleTableHandle) table;
         ConnectorTableLayout layout = new ConnectorTableLayout(new ExampleTableLayoutHandle(tableHandle));
         return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
@@ -91,12 +99,14 @@ public class ExampleMetadata
     @Override
     public ConnectorTableLayout getTableLayout(ConnectorSession session, ConnectorTableLayoutHandle handle)
     {
+        log.info("getTableLayout");
         return new ConnectorTableLayout(handle);
     }
 
     @Override
     public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
     {
+        log.info("getTableMetadata");
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) table;
         checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
         SchemaTableName tableName = new SchemaTableName(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
@@ -107,6 +117,7 @@ public class ExampleMetadata
     @Override
     public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull)
     {
+        log.info("listTables");
         Set<String> schemaNames;
         if (schemaNameOrNull != null) {
             schemaNames = ImmutableSet.of(schemaNameOrNull);
@@ -127,6 +138,7 @@ public class ExampleMetadata
     @Override
     public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
     {
+        log.info("getColumnHandles");
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
         checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
 
@@ -147,6 +159,7 @@ public class ExampleMetadata
     @Override
     public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
     {
+        log.info("listTableColumns");
         requireNonNull(prefix, "prefix is null");
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> columns = ImmutableMap.builder();
         for (SchemaTableName tableName : listTables(session, prefix)) {
@@ -161,6 +174,7 @@ public class ExampleMetadata
 
     private ConnectorTableMetadata getTableMetadata(SchemaTableName tableName)
     {
+        log.info("getTableMetadata");
         if (!listSchemaNames().contains(tableName.getSchemaName())) {
             return null;
         }
@@ -175,6 +189,7 @@ public class ExampleMetadata
 
     private List<SchemaTableName> listTables(ConnectorSession session, SchemaTablePrefix prefix)
     {
+        log.info("listTables");
         if (prefix.getSchemaName() == null) {
             return listTables(session, prefix.getSchemaName());
         }
@@ -184,6 +199,7 @@ public class ExampleMetadata
     @Override
     public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
     {
+        log.info("getColumnMetadata");
         return ((ExampleColumnHandle) columnHandle).getColumnMetadata();
     }
 }

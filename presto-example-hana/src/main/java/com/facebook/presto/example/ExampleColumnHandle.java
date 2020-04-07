@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ColumnHandle;
 import com.facebook.presto.spi.ColumnMetadata;
 import com.facebook.presto.spi.type.Type;
@@ -27,6 +28,7 @@ import static java.util.Objects.requireNonNull;
 public final class ExampleColumnHandle
         implements ColumnHandle
 {
+    private static final Logger log = Logger.get(ExampleColumnHandle.class);
     private final String connectorId;
     private final String columnName;
     private final Type columnType;
@@ -39,6 +41,7 @@ public final class ExampleColumnHandle
             @JsonProperty("columnType") Type columnType,
             @JsonProperty("ordinalPosition") int ordinalPosition)
     {
+        log.info("ExampleColumnHandle:" + this.toString());
         this.connectorId = requireNonNull(connectorId, "connectorId is null");
         this.columnName = requireNonNull(columnName, "columnName is null");
         this.columnType = requireNonNull(columnType, "columnType is null");
@@ -71,7 +74,8 @@ public final class ExampleColumnHandle
 
     public ColumnMetadata getColumnMetadata()
     {
-        return new ColumnMetadata(columnName, columnType);
+        ColumnMetadata columnMetadata = new ColumnMetadata(columnName, columnType);
+        return columnMetadata;
     }
 
     @Override
