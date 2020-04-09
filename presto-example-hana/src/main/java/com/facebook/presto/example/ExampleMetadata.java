@@ -66,7 +66,7 @@ public class ExampleMetadata
         return list;
     }
 
-    private List<String> listSchemaNames()
+    public List<String> listSchemaNames()
     {
         return ImmutableList.copyOf(exampleClient.getSchemaNames());
     }

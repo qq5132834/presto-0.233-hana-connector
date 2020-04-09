@@ -84,7 +84,9 @@
         <module>presto-example-http</module>
         <module>presto-example-hana</module>
         <module>presto-mysql</module>
+        <module>presto-cassandra</module>
         <module>presto-hana</module>
+	<module>presto-sics</module>
     </modules>
 
     <dependencyManagement>
