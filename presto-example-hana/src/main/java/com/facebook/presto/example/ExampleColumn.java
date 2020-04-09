@@ -17,7 +17,6 @@ import com.facebook.presto.spi.type.Type;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -25,7 +24,6 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
 public final class ExampleColumn
-        implements Serializable
 {
     private final String name;
     private final Type type;

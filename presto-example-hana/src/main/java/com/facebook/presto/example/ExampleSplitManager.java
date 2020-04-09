@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ConnectorSession;
 import com.facebook.presto.spi.ConnectorSplit;
 import com.facebook.presto.spi.ConnectorSplitSource;
@@ -34,6 +35,7 @@ import static java.util.Objects.requireNonNull;
 public class ExampleSplitManager
         implements ConnectorSplitManager
 {
+    private static final Logger log = Logger.get(ExampleSplitManager.class);
     private final String connectorId;
     private final ExampleClient exampleClient;
 
@@ -51,6 +53,7 @@ public class ExampleSplitManager
             ConnectorTableLayoutHandle layout,
             SplitSchedulingContext splitSchedulingContext)
     {
+        log.info("getSplits");
         ExampleTableLayoutHandle layoutHandle = (ExampleTableLayoutHandle) layout;
         ExampleTableHandle tableHandle = layoutHandle.getTable();
         ExampleTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
@@ -59,6 +62,7 @@ public class ExampleSplitManager
 
         List<ConnectorSplit> splits = new ArrayList<>();
         for (URI uri : table.getSources()) {
+            log.info("uri:" + uri.toString());
             splits.add(new ExampleSplit(connectorId, tableHandle.getSchemaName(), tableHandle.getTableName(), uri));
         }
         Collections.shuffle(splits);

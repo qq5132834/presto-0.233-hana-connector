@@ -13,6 +13,8 @@
  */
 package com.facebook.presto.example;
 
+import com.alibaba.fastjson.JSONObject;
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.RecordCursor;
 import com.facebook.presto.spi.type.Type;
 import com.google.common.base.Splitter;
@@ -24,6 +26,7 @@ import io.airlift.slice.Slices;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,6 +41,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class ExampleRecordCursor
         implements RecordCursor
 {
+    private static final Logger log = Logger.get(ExampleRecordCursor.class);
     private static final Splitter LINE_SPLITTER = Splitter.on(",").trimResults();
 
     private final List<ExampleColumnHandle> columnHandles;
@@ -59,8 +63,26 @@ public class ExampleRecordCursor
         }
 
         try (CountingInputStream input = new CountingInputStream(byteSource.openStream())) {
-            lines = byteSource.asCharSource(UTF_8).readLines().iterator();
+            // lines = byteSource.asCharSource(UTF_8).readLines().iterator();
             totalBytes = input.getCount();
+
+            List<String> lineList = byteSource.asCharSource(UTF_8).readLines().asList();
+            log.info("lineList-01:" + JSONObject.toJSONString(lineList));
+            if(lineList!=null){
+                List<String> ls = new ArrayList<>();
+                for ( String str : lineList ) {
+                    ls.add(str);
+                }
+                ls.add("PoD, 1");
+                ls.add("SZU, 37");
+                ls.add("GREE, 47");
+                log.info("lineList-02:" + JSONObject.toJSONString(ls));
+                lines = ls.iterator();
+            }
+            else{
+                lines = null;
+            }
+
         }
         catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -93,8 +115,10 @@ public class ExampleRecordCursor
             return false;
         }
         String line = lines.next();
-        fields = LINE_SPLITTER.splitToList(line);
-
+        log.info("advanceNextPosition.line:" + line);
+        List<String> ls = LINE_SPLITTER.splitToList(line);
+        fields = ls;
+        log.info("fields:" + JSONObject.toJSONString(ls));
         return true;
     }
 

@@ -15,7 +15,6 @@ package com.facebook.presto.example;
 
 import com.facebook.airlift.bootstrap.Bootstrap;
 import com.facebook.airlift.json.JsonModule;
-import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ConnectorHandleResolver;
 import com.facebook.presto.spi.connector.Connector;
 import com.facebook.presto.spi.connector.ConnectorContext;
@@ -30,12 +29,9 @@ import static java.util.Objects.requireNonNull;
 public class ExampleConnectorFactory
         implements ConnectorFactory
 {
-    private static final Logger log = Logger.get(ExampleConnectorFactory.class);
-
     @Override
     public String getName()
     {
-        log.info("getName:example-hana");
         return "example-hana";
     }
 
@@ -48,9 +44,6 @@ public class ExampleConnectorFactory
     @Override
     public Connector create(String catalogName, Map<String, String> requiredConfig, ConnectorContext context)
     {
-        //
-        log.info("catalogName:" + catalogName + ",requiredConfig:" + com.alibaba.fastjson.JSONObject.toJSONString(requiredConfig));
-
         requireNonNull(requiredConfig, "requiredConfig is null");
         try {
             // A plugin is not required to use Guice; it is just very convenient

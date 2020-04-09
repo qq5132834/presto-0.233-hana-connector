@@ -13,15 +13,26 @@
  */
 package com.facebook.presto.example;
 
-import com.alibaba.fastjson.JSONObject;
 import com.facebook.airlift.log.Logger;
-import com.facebook.presto.spi.*;
+import com.facebook.presto.spi.ColumnHandle;
+import com.facebook.presto.spi.ColumnMetadata;
+import com.facebook.presto.spi.ConnectorSession;
+import com.facebook.presto.spi.ConnectorTableHandle;
+import com.facebook.presto.spi.ConnectorTableLayout;
+import com.facebook.presto.spi.ConnectorTableLayoutHandle;
+import com.facebook.presto.spi.ConnectorTableLayoutResult;
+import com.facebook.presto.spi.ConnectorTableMetadata;
+import com.facebook.presto.spi.Constraint;
+import com.facebook.presto.spi.SchemaTableName;
+import com.facebook.presto.spi.SchemaTablePrefix;
+import com.facebook.presto.spi.TableNotFoundException;
 import com.facebook.presto.spi.connector.ConnectorMetadata;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
 import javax.inject.Inject;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -46,16 +57,15 @@ public class ExampleMetadata
     }
 
     /***
-     * show schemas [from catalogName]
+     * show schemas from catalogName
+     *
      * @param session
      * @return
      */
     @Override
     public List<String> listSchemaNames(ConnectorSession session)
     {
-        List<String> schemaList = listSchemaNames();
-        log.info("listSchemaNames:" + JSONObject.toJSONString(schemaList));
-        return schemaList;
+        return listSchemaNames();
     }
 
     public List<String> listSchemaNames()
@@ -64,7 +74,7 @@ public class ExampleMetadata
     }
 
     /***
-     * 获取SQL中的表实例，ExampleTableHandle实现了com.facebook.presto.spi.ConnectorTableHandle接口，
+     * 获取SQL中的表实例，ExampleTableHandle中实现了com.facebook.presto.spi.ConnectorTableHandle接口，
      * 在获取分片和表字段的信息时需要用到该实例
      *
      * @param session
@@ -74,7 +84,8 @@ public class ExampleMetadata
     @Override
     public ExampleTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
     {
-        log.info("getTableHandle:");
+        log.info("getTableHandle.schema:" + tableName.getSchemaName() + ",tableName:" + tableName.getTableName());
+
         if (!listSchemaNames(session).contains(tableName.getSchemaName())) {
             return null;
         }
@@ -102,11 +113,12 @@ public class ExampleMetadata
     }
 
     /***
-     * 获取表的元数据信息，主要包含了表字段信息，所在的Schema，Owner信息。
+     *
+     * 获取表的元数据，不要包含了表字段信息，所在的schema／owner等
      *
      * @param session
      * @param table
-     * @return ConnectorTableMetadata
+     * @return
      */
     @Override
     public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
@@ -120,6 +132,7 @@ public class ExampleMetadata
 
     /***
      * show tables [from catalogName.schemaName]
+     *
      * @param session
      * @param schemaNameOrNull
      * @return
@@ -127,7 +140,6 @@ public class ExampleMetadata
     @Override
     public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull)
     {
-        log.info("listTables:" + schemaNameOrNull);
         Set<String> schemaNames;
         if (schemaNameOrNull != null) {
             schemaNames = ImmutableSet.of(schemaNameOrNull);
@@ -150,7 +162,7 @@ public class ExampleMetadata
      *
      * @param session
      * @param tableHandle
-     * @return Map
+     * @return
      */
     @Override
     public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
@@ -173,11 +185,11 @@ public class ExampleMetadata
     }
 
     /***
-     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息
+     * 获取表的字段信息
      *
      * @param session
      * @param prefix
-     * @return Map
+     * @return
      */
     @Override
     public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
@@ -216,6 +228,13 @@ public class ExampleMetadata
         return ImmutableList.of(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
     }
 
+    /***
+     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息
+     * @param session
+     * @param tableHandle
+     * @param columnHandle
+     * @return
+     */
     @Override
     public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
     {
