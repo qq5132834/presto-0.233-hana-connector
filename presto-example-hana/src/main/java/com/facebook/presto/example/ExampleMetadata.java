@@ -27,6 +27,7 @@ import com.facebook.presto.spi.SchemaTableName;
 import com.facebook.presto.spi.SchemaTablePrefix;
 import com.facebook.presto.spi.TableNotFoundException;
 import com.facebook.presto.spi.connector.ConnectorMetadata;
+import com.facebook.presto.spi.type.Type;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -60,6 +61,9 @@ public class ExampleMetadata
     }
 
     /***
+     *
+     * 第2步调用
+     *
      * show schemas from catalogName
      *
      * @param session
@@ -68,6 +72,7 @@ public class ExampleMetadata
     @Override
     public List<String> listSchemaNames(ConnectorSession session)
     {
+        log.info("listSchemaNames");
         return listSchemaNames();
     }
 
@@ -77,6 +82,9 @@ public class ExampleMetadata
     }
 
     /***
+     * 第1步调用
+     *
+     *
      * 获取SQL中的表实例，ExampleTableHandle中实现了com.facebook.presto.spi.ConnectorTableHandle接口，
      * 在获取分片和表字段的信息时需要用到该实例
      *
@@ -104,6 +112,7 @@ public class ExampleMetadata
     @Override
     public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns)
     {
+        log.info("getTableLayouts");
         ExampleTableHandle tableHandle = (ExampleTableHandle) table;
         ConnectorTableLayout layout = new ConnectorTableLayout(new ExampleTableLayoutHandle(tableHandle));
         return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
@@ -112,11 +121,12 @@ public class ExampleMetadata
     @Override
     public ConnectorTableLayout getTableLayout(ConnectorSession session, ConnectorTableLayoutHandle handle)
     {
+        log.info("getTableLayout");
         return new ConnectorTableLayout(handle);
     }
 
     /***
-     *
+     * 第3步调用
      * 获取表的元数据，不要包含了表字段信息，所在的schema／owner等
      *
      * @param session
@@ -126,6 +136,7 @@ public class ExampleMetadata
     @Override
     public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
     {
+        log.info("getTableMetadata");
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) table;
         checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
         SchemaTableName tableName = new SchemaTableName(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
@@ -143,6 +154,7 @@ public class ExampleMetadata
     @Override
     public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull)
     {
+        log.info("listTables");
         Set<String> schemaNames;
         if (schemaNameOrNull != null) {
             schemaNames = ImmutableSet.of(schemaNameOrNull);
@@ -155,7 +167,7 @@ public class ExampleMetadata
         for (String schemaName : schemaNames) {
             //http
             for (String tableName : exampleClient.getTableNames(schemaName)) {
-                log.info("listTables:" + tableName );
+                log.info("tableName:" + tableName );
                 builder.add(new SchemaTableName(schemaName, tableName));
             }
             //hana
@@ -169,6 +181,7 @@ public class ExampleMetadata
     }
 
     /***
+     * 第4步调用
      * 获取表的列信息
      *
      * @param session
@@ -178,6 +191,7 @@ public class ExampleMetadata
     @Override
     public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
     {
+        log.info("getColumnHandles");
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
         checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
 
@@ -251,6 +265,13 @@ public class ExampleMetadata
     @Override
     public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
     {
-        return ((ExampleColumnHandle) columnHandle).getColumnMetadata();
+        log.info("getColumnMetadata");
+        ColumnMetadata columnMetadata = ((ExampleColumnHandle) columnHandle).getColumnMetadata();
+        Type type = columnMetadata.getType();
+        String columnName = columnMetadata.getName();  //属性名称
+        String comment = columnMetadata.getComment();  //字段备注信息
+        String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
+        log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
+        return columnMetadata;
     }
 }

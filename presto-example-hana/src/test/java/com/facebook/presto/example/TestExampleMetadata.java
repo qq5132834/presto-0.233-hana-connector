@@ -51,7 +51,7 @@ public class TestExampleMetadata
         URL metadataUrl = Resources.getResource(TestExampleClient.class, "/example-data/example-metadata.json");
         assertNotNull(metadataUrl, "metadataUrl is null");
         ExampleClient client = new ExampleClient(new ExampleConfig().setMetadata(metadataUrl.toURI()), CATALOG_CODEC);
-        metadata = new ExampleMetadata(new ExampleConnectorId(CONNECTOR_ID), client);
+        metadata = new ExampleMetadata(new ExampleConnectorId(CONNECTOR_ID), client,new SaphanaClient());
     }
 
     @Test
