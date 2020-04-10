@@ -53,6 +53,9 @@ public class ExampleModule
         binder.bind(ExampleClient.class).in(Scopes.SINGLETON);
         binder.bind(ExampleSplitManager.class).in(Scopes.SINGLETON);
         binder.bind(ExampleRecordSetProvider.class).in(Scopes.SINGLETON);
+
+        binder.bind(SaphanaClient.class).in(Scopes.SINGLETON);
+
         configBinder(binder).bindConfig(ExampleConfig.class);
 
         jsonBinder(binder).addDeserializerBinding(Type.class).to(TypeDeserializer.class);
