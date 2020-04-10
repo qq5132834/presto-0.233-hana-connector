@@ -75,7 +75,14 @@ public class ExampleMetadata
 
     public List<String> listSchemaNames()
     {
-        return ImmutableList.copyOf(exampleClient.getSchemaNames());
+        //http
+        List<String> list = new ArrayList<>();
+        list.addAll(ImmutableList.copyOf(exampleClient.getSchemaNames()));
+
+        //添加一个hana的schema信息
+        list.add(SaphanaClient.getSCHEMA());
+
+        return list;
     }
 
     /***
@@ -160,21 +167,28 @@ public class ExampleMetadata
             schemaNames = exampleClient.getSchemaNames();
         }
 
-        ImmutableList.Builder<SchemaTableName> builder = ImmutableList.builder();
+        List<SchemaTableName> builder = new ArrayList<>();
         for (String schemaName : schemaNames) {
             //http
             for (String tableName : exampleClient.getTableNames(schemaName)) {
                 log.info("tableName:" + tableName );
                 builder.add(new SchemaTableName(schemaName, tableName));
             }
-            //hana
-            List<String> list = this.saphanaClient.getTables("sics_pod_schema");
-            for (String tn: list) {
-                log.info("tn:" + tn);
-                builder.add(new SchemaTableName(schemaName, tn));
+        }
+
+        for (String schemaName : schemaNames) {
+            //获取hana中schema下的表
+            if(SaphanaClient.getSCHEMA().equals(schemaName)){
+                builder.clear();
+                List<String> list = this.saphanaClient.getTables("sics_pod_schema");
+                for (String tn: list) {
+                    log.info("tn:" + tn);
+                    builder.add(new SchemaTableName(schemaName, tn));
+                }
             }
         }
-        return builder.build();
+
+        return builder;
     }
 
     /***

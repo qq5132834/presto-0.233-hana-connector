@@ -23,13 +23,18 @@ import java.util.*;
 public class SaphanaClient
 {
     private static final Logger log = Logger.get(SaphanaClient.class);
+    private static final String SCHEMA = "sics_pod_schema";
     private static final String DRIVER = "com.sap.db.jdbc.Driver";
-    private static final String URL = "jdbc:sap://192.168.152.171:39015?currentschema=sics_pod_schema";
+    private static final String URL = "jdbc:sap://192.168.152.171:39015?currentschema="+SCHEMA;
     private static final String USER = "SYSTEM";
     private static final String PASSWORD = "sicsPoD2020";
 
     private static Map<String, List<String>> schemaTables = new HashMap<>();
     private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();
+
+    public static String getSCHEMA(){
+        return SCHEMA;
+    }
 
     @Inject
     public SaphanaClient(){
