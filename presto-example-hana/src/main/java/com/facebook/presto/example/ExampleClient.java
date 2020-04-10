@@ -14,6 +14,7 @@
 package com.facebook.presto.example;
 
 import com.facebook.airlift.json.JsonCodec;
+import com.facebook.airlift.log.Logger;
 import com.google.common.base.Function;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
@@ -40,6 +41,7 @@ import static java.util.Objects.requireNonNull;
 
 public class ExampleClient
 {
+    private static final Logger log = Logger.get(ExampleClient.class);
     /**
      * SchemaName -> (TableName -> TableMetadata)
      */
@@ -56,11 +58,13 @@ public class ExampleClient
 
     public Set<String> getSchemaNames()
     {
+        log.info("getSchemaNames");
         return schemas.get().keySet();
     }
 
     public Set<String> getTableNames(String schema)
     {
+        log.info("getTableNames");
         requireNonNull(schema, "schema is null");
         Map<String, ExampleTable> tables = schemas.get().get(schema);
         if (tables == null) {
@@ -71,6 +75,7 @@ public class ExampleClient
 
     public ExampleTable getTable(String schema, String tableName)
     {
+        log.info("getTable");
         requireNonNull(schema, "schema is null");
         requireNonNull(tableName, "tableName is null");
         Map<String, ExampleTable> tables = schemas.get().get(schema);
@@ -82,8 +87,10 @@ public class ExampleClient
 
     private static Supplier<Map<String, Map<String, ExampleTable>>> schemasSupplier(final JsonCodec<Map<String, List<ExampleTable>>> catalogCodec, final URI metadataUri)
     {
+        log.info("schemasSupplier");
         return () -> {
             try {
+                log.info("schemasSupplier");
                 return lookupSchemas(metadataUri, catalogCodec);
             }
             catch (IOException e) {
@@ -95,6 +102,7 @@ public class ExampleClient
     private static Map<String, Map<String, ExampleTable>> lookupSchemas(URI metadataUri, JsonCodec<Map<String, List<ExampleTable>>> catalogCodec)
             throws IOException
     {
+        log.info("lookupSchemas");
         URL result = metadataUri.toURL();
         String json = Resources.toString(result, UTF_8);
         Map<String, List<ExampleTable>> catalog = catalogCodec.fromJson(json);
@@ -104,7 +112,9 @@ public class ExampleClient
 
     private static Function<List<ExampleTable>, Map<String, ExampleTable>> resolveAndIndexTables(final URI metadataUri)
     {
+        log.info("resolveAndIndexTables");
         return tables -> {
+            log.info("resolveAndIndexTables");
             Iterable<ExampleTable> resolvedTables = transform(tables, tableUriResolver(metadataUri));
             return ImmutableMap.copyOf(uniqueIndex(resolvedTables, ExampleTable::getName));
         };
@@ -112,7 +122,9 @@ public class ExampleClient
 
     private static Function<ExampleTable, ExampleTable> tableUriResolver(final URI baseUri)
     {
+        log.info("tableUriResolver");
         return table -> {
+            log.info("tableUriResolver");
             List<URI> sources = ImmutableList.copyOf(transform(table.getSources(), baseUri::resolve));
             return new ExampleTable(table.getName(), table.getColumns(), sources);
         };

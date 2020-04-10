@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ColumnHandle;
 import com.facebook.presto.spi.ColumnMetadata;
@@ -58,34 +59,6 @@ public class ExampleMetadata
     }
 
     /***
-     *
-     * 第2步调用
-     *
-     * show schemas from catalogName
-     *
-     * @param session
-     * @return
-     */
-    @Override
-    public List<String> listSchemaNames(ConnectorSession session)
-    {
-        log.info("listSchemaNames");
-        return listSchemaNames();
-    }
-
-    public List<String> listSchemaNames()
-    {
-        //http
-        List<String> list = new ArrayList<>();
-        list.addAll(ImmutableList.copyOf(exampleClient.getSchemaNames()));
-
-        //添加一个hana的schema信息
-        list.add(SaphanaClient.getSCHEMA());
-
-        return list;
-    }
-
-    /***
      * 第1步调用
      *
      *
@@ -105,12 +78,50 @@ public class ExampleMetadata
             return null;
         }
 
-        ExampleTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
-        if (table == null) {
-            return null;
+        ExampleTable exampleTable = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+        SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+
+        //返回http的表处理
+        if (exampleTable != null) {
+            return new ExampleTableHandle(connectorId, tableName.getSchemaName(), tableName.getTableName());
         }
 
-        return new ExampleTableHandle(connectorId, tableName.getSchemaName(), tableName.getTableName());
+        //返回hana的表处理
+        if (saphanaTable != null) {
+//            return new SaphanaTableHandle(connectorId,tableName.getSchemaName(), tableName.getTableName());
+        }
+
+        return null;
+
+    }
+
+    /***
+     *
+     * 第2步调用
+     *
+     * show schemas from catalogName
+     *
+     * @param session
+     * @return
+     */
+    @Override
+    public List<String> listSchemaNames(ConnectorSession session)
+    {
+        List<String> list = listSchemaNames();
+        log.info("listSchemaNames:" + JSONObject.toJSONString(list));
+        return list;
+    }
+
+    public List<String> listSchemaNames()
+    {
+        //http
+        List<String> list = new ArrayList<>();
+        list.addAll(ImmutableList.copyOf(exampleClient.getSchemaNames()));
+
+        //添加一个hana的schema信息
+        list.add(SaphanaClient.getSCHEMA());
+
+        return list;
     }
 
     @Override

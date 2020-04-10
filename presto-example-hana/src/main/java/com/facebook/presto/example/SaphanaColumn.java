@@ -13,13 +13,19 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.presto.spi.type.IntegerType;
+import com.facebook.presto.spi.type.VarcharType;
+import com.facebook.presto.spi.type.Type;
+
 public class SaphanaColumn
 {
-    private String tableName;  //表名
-    private String columnName; //字段名称
-    private Integer dataType;  //
-    private String typeName;  //字段数据类型
-    private Integer columnSize;  //字段大小
+    private String tableName;       //表名
+    private String columnName;      //字段名称
+    private Integer dataType;       //
+    private String typeName;        //字段数据类型
+    private Integer columnSize;     //字段大小
+
+    private Type type;              //类型
 
     public SaphanaColumn(){}
 
@@ -28,6 +34,20 @@ public class SaphanaColumn
         this.columnName = columnName;
         this.typeName = typeName;
         this.columnSize = columnSize;
+
+        if("VARCHAR".equals(typeName)){
+            this.type = VarcharType.createVarcharType(this.columnSize);
+        }
+        if("INTEGER".equals(typeName)){
+            this.type = IntegerType.INTEGER;
+        }
+
+    }
+
+    public Type getType() { return type; }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getTableName() {

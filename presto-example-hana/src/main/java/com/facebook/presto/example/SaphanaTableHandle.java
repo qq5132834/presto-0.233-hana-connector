@@ -22,25 +22,23 @@ import com.google.common.base.Joiner;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-
-public final class ExampleTableHandle
+public final class SaphanaTableHandle
         implements ConnectorTableHandle
 {
-    private static final Logger log = Logger.get(ExampleTableHandle.class);
+    private static final Logger log = Logger.get(SaphanaTableHandle.class);
+
     private final String connectorId;
     private final String schemaName;
     private final String tableName;
 
     @JsonCreator
-    public ExampleTableHandle(
+    public SaphanaTableHandle(
             @JsonProperty("connectorId") String connectorId,
             @JsonProperty("schemaName") String schemaName,
-            @JsonProperty("tableName") String tableName)
-    {
-        this.connectorId = requireNonNull(connectorId, "connectorId is null");
-        this.schemaName = requireNonNull(schemaName, "schemaName is null");
-        this.tableName = requireNonNull(tableName, "tableName is null");
+            @JsonProperty("tableName") String tableName){
+        this.connectorId = connectorId;
+        this.schemaName = schemaName;
+        this.tableName = tableName;
     }
 
     @JsonProperty
@@ -63,7 +61,7 @@ public final class ExampleTableHandle
 
     public SchemaTableName toSchemaTableName()
     {
-        log.info("ExampleTableHandle.toSchemaTableName");
+        log.info("SaphanaTableHandle.toSchemaTableName");
         return new SchemaTableName(schemaName, tableName);
     }
 
@@ -76,7 +74,7 @@ public final class ExampleTableHandle
     @Override
     public boolean equals(Object obj)
     {
-        log.info("ExampleTableHandle.equals");
+        log.info("SaphanaTableHandle.equals");
         if (this == obj) {
             return true;
         }
@@ -84,7 +82,7 @@ public final class ExampleTableHandle
             return false;
         }
 
-        ExampleTableHandle other = (ExampleTableHandle) obj;
+        SaphanaTableHandle other = (SaphanaTableHandle) obj;
         return Objects.equals(this.connectorId, other.connectorId) &&
                 Objects.equals(this.schemaName, other.schemaName) &&
                 Objects.equals(this.tableName, other.tableName);
@@ -95,4 +93,5 @@ public final class ExampleTableHandle
     {
         return Joiner.on(":").join(connectorId, schemaName, tableName);
     }
+
 }

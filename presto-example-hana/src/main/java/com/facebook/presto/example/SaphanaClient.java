@@ -20,6 +20,8 @@ import javax.inject.Inject;
 import java.sql.*;
 import java.util.*;
 
+import static java.util.Objects.requireNonNull;
+
 public class SaphanaClient
 {
     private static final Logger log = Logger.get(SaphanaClient.class);
@@ -29,8 +31,8 @@ public class SaphanaClient
     private static final String USER = "SYSTEM";
     private static final String PASSWORD = "sicsPoD2020";
 
-    private static Map<String, List<String>> schemaTables = new HashMap<>();
-    private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();
+    private static Map<String, List<String>> schemaTables = new HashMap<>();         //schema与table list关系
+    private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
 
     public static String getSCHEMA(){
         return SCHEMA;
@@ -59,8 +61,26 @@ public class SaphanaClient
             tableColumns.put("company", columns2);
 
         }
+    }
 
-
+    /***
+     *
+     *
+     * @param schemaName
+     * @param tableName
+     * @return SaphanaTable
+     */
+    public SaphanaTable getTable(String schemaName, String tableName)
+    {
+        requireNonNull(schemaName, "schemaName is null");
+        requireNonNull(tableName, "tableName is null");
+        List<String> tables = schemaTables.get(schemaName);
+        if(tables!=null && tables.contains(tableName)){
+            //如果schema与table存在
+            SaphanaTable saphanaTable = new SaphanaTable(tableName, tableColumns.get(tableName));
+            return saphanaTable;
+        }
+        return null;
     }
 
     /***
