@@ -34,10 +34,7 @@ import com.google.common.collect.ImmutableSet;
 
 import javax.inject.Inject;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -195,18 +192,43 @@ public class ExampleMetadata
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
         checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
 
-        ExampleTable table = exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+        ExampleTable table = this.exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+
         if (table == null) {
             throw new TableNotFoundException(exampleTableHandle.toSchemaTableName());
         }
 
-        ImmutableMap.Builder<String, ColumnHandle> columnHandles = ImmutableMap.builder();
+        Map<String, ColumnHandle> map = new HashMap<>();
+        //ImmutableMap.Builder<String, ColumnHandle> columnHandles = ImmutableMap.builder();
         int index = 0;
         for (ColumnMetadata column : table.getColumnsMetadata()) {
-            columnHandles.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
+            map.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
+            log.info("column.getName:" + column.getName());
+            //columnHandles.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
             index++;
         }
-        return columnHandles.build();
+        //return columnHandles.build();
+        return map;
+    }
+
+    /***
+     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息
+     * @param session
+     * @param tableHandle
+     * @param columnHandle
+     * @return
+     */
+    @Override
+    public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
+    {
+        log.info("getColumnMetadata");
+        ColumnMetadata columnMetadata = ((ExampleColumnHandle) columnHandle).getColumnMetadata();
+        Type type = columnMetadata.getType();
+        String columnName = columnMetadata.getName();  //属性名称
+        String comment = columnMetadata.getComment();  //字段备注信息
+        String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
+        log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
+        return columnMetadata;
     }
 
     /***
@@ -255,23 +277,5 @@ public class ExampleMetadata
         return ImmutableList.of(new SchemaTableName(prefix.getSchemaName(), prefix.getTableName()));
     }
 
-    /***
-     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息
-     * @param session
-     * @param tableHandle
-     * @param columnHandle
-     * @return
-     */
-    @Override
-    public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
-    {
-        log.info("getColumnMetadata");
-        ColumnMetadata columnMetadata = ((ExampleColumnHandle) columnHandle).getColumnMetadata();
-        Type type = columnMetadata.getType();
-        String columnName = columnMetadata.getName();  //属性名称
-        String comment = columnMetadata.getComment();  //字段备注信息
-        String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
-        log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
-        return columnMetadata;
-    }
+
 }

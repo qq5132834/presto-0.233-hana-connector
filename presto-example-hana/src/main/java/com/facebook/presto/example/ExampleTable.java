@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ColumnMetadata;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,10 +28,13 @@ import static java.util.Objects.requireNonNull;
 
 public class ExampleTable
 {
+    private static final Logger log = Logger.get(ExampleTable.class);
+
     private final String name;
     private final List<ExampleColumn> columns;
-    private final List<ColumnMetadata> columnsMetadata;
     private final List<URI> sources;
+
+    private final List<ColumnMetadata> columnsMetadata;
 
     @JsonCreator
     public ExampleTable(
@@ -38,11 +42,24 @@ public class ExampleTable
             @JsonProperty("columns") List<ExampleColumn> columns,
             @JsonProperty("sources") List<URI> sources)
     {
+        log.info("ExampleTable.name:" + name);
+        if(columns!=null){
+            for (ExampleColumn exampleColumn : columns) {
+                log.info("exampleColumn:" + exampleColumn.getName() + "," +exampleColumn.getType().getDisplayName());
+            }
+        }
+        if(sources!=null){
+            for (URI uri: sources) {
+                log.info("uri:" + uri.toString());
+            }
+        }
+
         checkArgument(!isNullOrEmpty(name), "name is null or is empty");
         this.name = requireNonNull(name, "name is null");
         this.columns = ImmutableList.copyOf(requireNonNull(columns, "columns is null"));
         this.sources = ImmutableList.copyOf(requireNonNull(sources, "sources is null"));
 
+        //转ColumnMetadata
         ImmutableList.Builder<ColumnMetadata> columnsMetadata = ImmutableList.builder();
         for (ExampleColumn column : this.columns) {
             columnsMetadata.add(new ColumnMetadata(column.getName(), column.getType()));
