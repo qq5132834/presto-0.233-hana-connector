@@ -1,0 +1,13 @@
+#Thu Apr 09 10:25:01 CST 2020
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/DockerizedMySqlServer.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/main/java/com/facebook/presto/plugin/mysql/MySqlConfig.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/TestMySqlTypeMapping.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/TestMySqlDistributedQueries.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/TestMySqlConfig.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/main/java/com/facebook/presto/plugin/mysql/MySqlPlugin.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/main/java/com/facebook/presto/plugin/mysql/MySqlClientModule.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/main/java/com/facebook/presto/plugin/mysql/MySqlClient.java=1586398837000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/TestMySqlIntegrationSmokeTest.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/MySqlQueryRunner.java=1586106246000
+/Volumes/D/github/hana/presto-mysql/src/test/java/com/facebook/presto/plugin/mysql/TestMySqlPlugin.java=1586106246000
+configuration*?=ED87181A34930EDF3F4DCF60A219A3D5AB2E679A

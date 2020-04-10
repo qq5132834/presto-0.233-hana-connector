@@ -61,6 +61,7 @@ import static java.util.Locale.ENGLISH;
 public class MySqlClient
         extends BaseJdbcClient
 {
+
     @Inject
     public MySqlClient(JdbcConnectorId connectorId, BaseJdbcConfig config, MySqlConfig mySqlConfig)
             throws SQLException
