@@ -73,9 +73,6 @@ public class ExampleRecordCursor
                 for ( String str : lineList ) {
                     ls.add(str);
                 }
-                ls.add("PoD, 1");
-                ls.add("SZU, 37");
-                ls.add("GREE, 47");
                 log.info("lineList-02:" + JSONObject.toJSONString(ls));
                 lines = ls.iterator();
             }
