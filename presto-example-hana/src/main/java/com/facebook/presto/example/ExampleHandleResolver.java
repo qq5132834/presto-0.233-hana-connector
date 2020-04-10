@@ -26,25 +26,29 @@ public class ExampleHandleResolver
     @Override
     public Class<? extends ConnectorTableLayoutHandle> getTableLayoutHandleClass()
     {
-        return ExampleTableLayoutHandle.class;
+        //return ExampleTableLayoutHandle.class;
+        return SaphanaTableLayoutHandle.class;
     }
 
     @Override
     public Class<? extends ConnectorTableHandle> getTableHandleClass()
     {
-        return ExampleTableHandle.class;
+        //return ExampleTableHandle.class;
+        return SaphanaTableHandle.class;
     }
 
     @Override
     public Class<? extends ColumnHandle> getColumnHandleClass()
     {
-        return ExampleColumnHandle.class;
+        //return ExampleColumnHandle.class;
+        return SaphanaColumnHandle.class;
     }
 
     @Override
     public Class<? extends ConnectorSplit> getSplitClass()
     {
-        return ExampleSplit.class;
+        //return ExampleSplit.class;
+        return SaphanaSplit.class;
     }
 
     @Override

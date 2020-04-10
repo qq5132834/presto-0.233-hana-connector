@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.presto.spi.type.BigintType;
 import com.facebook.presto.spi.type.IntegerType;
 import com.facebook.presto.spi.type.VarcharType;
 import com.facebook.presto.spi.type.Type;
@@ -36,10 +37,10 @@ public class SaphanaColumn
         this.columnSize = columnSize;
 
         if("VARCHAR".equals(typeName)){
-            this.type = VarcharType.createVarcharType(this.columnSize);
+            this.type = VarcharType.createUnboundedVarcharType();
         }
-        if("INTEGER".equals(typeName)){
-            this.type = IntegerType.INTEGER;
+        if("BIGINT".equals(typeName)){
+            this.type = BigintType.BIGINT;
         }
 
     }

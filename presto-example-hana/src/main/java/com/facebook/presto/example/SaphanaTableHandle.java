@@ -59,7 +59,7 @@ public final class SaphanaTableHandle
         return tableName;
     }
 
-    public SchemaTableName toSchemaTableName()
+    public SchemaTableName createSchemaTableName()
     {
         log.info("SaphanaTableHandle.toSchemaTableName");
         return new SchemaTableName(schemaName, tableName);

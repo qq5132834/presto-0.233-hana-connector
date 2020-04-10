@@ -38,14 +38,24 @@ public class ExampleSplitManager
     private static final Logger log = Logger.get(ExampleSplitManager.class);
     private final String connectorId;
     private final ExampleClient exampleClient;
+    private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleSplitManager(ExampleConnectorId connectorId, ExampleClient exampleClient)
+    public ExampleSplitManager(ExampleConnectorId connectorId, ExampleClient exampleClient, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.exampleClient = requireNonNull(exampleClient, "client is null");
+        this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");
     }
 
+    /***
+     * 切割
+     * @param handle
+     * @param session
+     * @param layout
+     * @param splitSchedulingContext
+     * @return
+     */
     @Override
     public ConnectorSplitSource getSplits(
             ConnectorTransactionHandle handle,
@@ -54,19 +64,32 @@ public class ExampleSplitManager
             SplitSchedulingContext splitSchedulingContext)
     {
         log.info("getSplits");
-        ExampleTableLayoutHandle layoutHandle = (ExampleTableLayoutHandle) layout;
-        ExampleTableHandle tableHandle = layoutHandle.getTable();
-        ExampleTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
-        // this can happen if table is removed during a query
-        checkState(table != null, "Table %s.%s no longer exists", tableHandle.getSchemaName(), tableHandle.getTableName());
-
-        List<ConnectorSplit> splits = new ArrayList<>();
-        for (URI uri : table.getSources()) {
-            log.info("uri:" + uri.toString());
-            splits.add(new ExampleSplit(connectorId, tableHandle.getSchemaName(), tableHandle.getTableName(), uri));
+        {
+//            ExampleTableLayoutHandle layoutHandle = (ExampleTableLayoutHandle) layout;
+//            ExampleTableHandle tableHandle = layoutHandle.getTable();
+//            ExampleTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
+//            // this can happen if table is removed during a query
+//            checkState(table != null, "Table %s.%s no longer exists", tableHandle.getSchemaName(), tableHandle.getTableName());
+//
+//            List<ConnectorSplit> splits = new ArrayList<>();
+//            for (URI uri : table.getSources()) {
+//                log.info("uri:" + uri.toString());
+//                splits.add(new ExampleSplit(connectorId, tableHandle.getSchemaName(), tableHandle.getTableName(), uri));
+//            }
+//            Collections.shuffle(splits);
+//
+//            return new FixedSplitSource(splits);
         }
-        Collections.shuffle(splits);
 
-        return new FixedSplitSource(splits);
+        {
+            SaphanaTableLayoutHandle saphanaTableLayoutHandle = (SaphanaTableLayoutHandle) layout;
+            SaphanaTableHandle saphanaTableHandle = saphanaTableLayoutHandle.getTable();
+            SaphanaTable saphanaTable = this.saphanaClient.getTable(saphanaTableHandle.getSchemaName(), saphanaTableHandle.getTableName());
+            checkState(saphanaTable!=null, "Table %s.%s no longer exists", saphanaTableHandle.getSchemaName(), saphanaTableHandle.getTableName());
+            List<ConnectorSplit> splits = new ArrayList<>();
+            splits.add(new SaphanaSplit(connectorId, saphanaTableHandle.getSchemaName(), saphanaTableHandle.getTableName()));
+            Collections.shuffle(splits);
+            return new FixedSplitSource(splits);
+        }
     }
 }

@@ -70,7 +70,8 @@ public class ExampleMetadata
      * @return ExampleTableHandle
      */
     @Override
-    public ExampleTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
+//    public ExampleTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
+    public SaphanaTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
     {
         log.info("getTableHandle.schema:" + tableName.getSchemaName() + ",tableName:" + tableName.getTableName());
 
@@ -78,17 +79,16 @@ public class ExampleMetadata
             return null;
         }
 
-        ExampleTable exampleTable = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
-        SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
-
         //返回http的表处理
-        if (exampleTable != null) {
-            return new ExampleTableHandle(connectorId, tableName.getSchemaName(), tableName.getTableName());
-        }
+//        ExampleTable exampleTable = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+//        if (exampleTable != null) {
+//            return new ExampleTableHandle(connectorId, tableName.getSchemaName(), tableName.getTableName());
+//        }
 
         //返回hana的表处理
+        SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (saphanaTable != null) {
-//            return new SaphanaTableHandle(connectorId,tableName.getSchemaName(), tableName.getTableName());
+            return new SaphanaTableHandle(connectorId,tableName.getSchemaName(), tableName.getTableName());
         }
 
         return null;
@@ -128,9 +128,17 @@ public class ExampleMetadata
     public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns)
     {
         log.info("getTableLayouts");
-        ExampleTableHandle tableHandle = (ExampleTableHandle) table;
-        ConnectorTableLayout layout = new ConnectorTableLayout(new ExampleTableLayoutHandle(tableHandle));
-        return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
+        {
+//            ExampleTableHandle tableHandle = (ExampleTableHandle) table;
+//            ConnectorTableLayout layout = new ConnectorTableLayout(new ExampleTableLayoutHandle(tableHandle));
+//            return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
+        }
+
+        {
+            SaphanaTableHandle tableHandle = (SaphanaTableHandle) table;
+            ConnectorTableLayout layout = new ConnectorTableLayout(new SaphanaTableLayoutHandle(tableHandle));
+            return ImmutableList.of(new ConnectorTableLayoutResult(layout, constraint.getSummary()));
+        }
     }
 
     @Override
@@ -152,11 +160,20 @@ public class ExampleMetadata
     public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
     {
         log.info("getTableMetadata");
-        ExampleTableHandle exampleTableHandle = (ExampleTableHandle) table;
-        checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
-        SchemaTableName tableName = new SchemaTableName(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
 
-        return getTableMetadata(tableName);
+        {
+//            ExampleTableHandle exampleTableHandle = (ExampleTableHandle) table;
+//            checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+//            SchemaTableName tableName = new SchemaTableName(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+//            return getTableMetadataFromExample(tableName);
+        }
+
+        {
+            SaphanaTableHandle saphanaTableHandle = (SaphanaTableHandle) table;
+            checkArgument(saphanaTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+            SchemaTableName tableName = saphanaTableHandle.createSchemaTableName();
+            return getTableMetadataFromHana(tableName);
+        }
     }
 
     /***
@@ -214,26 +231,42 @@ public class ExampleMetadata
     public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
     {
         log.info("getColumnHandles");
-        ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
-        checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
 
-        ExampleTable table = this.exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+//        {
+//            ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
+//            checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+//            ExampleTable table = this.exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+//            if (table == null) {
+//                throw new TableNotFoundException(exampleTableHandle.toSchemaTableName());
+//            }
+//            Map<String, ColumnHandle> map = new HashMap<>();
+//            int index = 0;
+//            for (ColumnMetadata column : table.getColumnsMetadata()) {
+//                map.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
+//                log.info("column.getName:" + column.getName());
+//                index++;
+//            }
+//            return map;
+//        }
 
-        if (table == null) {
-            throw new TableNotFoundException(exampleTableHandle.toSchemaTableName());
+        {
+            SaphanaTableHandle saphanaTableHandle = (SaphanaTableHandle) tableHandle;
+            checkArgument(saphanaTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+            SaphanaTable saphanaTable = this.saphanaClient.getTable(saphanaTableHandle.getSchemaName(), saphanaTableHandle.getTableName());
+            if (saphanaTable == null) {
+                throw new TableNotFoundException(saphanaTableHandle.createSchemaTableName());
+            }
+            Map<String, ColumnHandle> map = new HashMap<>();
+            int index = 0;
+            for (ColumnMetadata column : saphanaTable.getColumnsMetadata()) {
+                map.put(column.getName(), new SaphanaColumnHandle(connectorId, column.getName(), column.getType(), index));
+                log.info("column.getName:" + column.getName());
+                index++;
+            }
+            return map;
+
         }
 
-        Map<String, ColumnHandle> map = new HashMap<>();
-        //ImmutableMap.Builder<String, ColumnHandle> columnHandles = ImmutableMap.builder();
-        int index = 0;
-        for (ColumnMetadata column : table.getColumnsMetadata()) {
-            map.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
-            log.info("column.getName:" + column.getName());
-            //columnHandles.put(column.getName(), new ExampleColumnHandle(connectorId, column.getName(), column.getType(), index));
-            index++;
-        }
-        //return columnHandles.build();
-        return map;
     }
 
     /***
@@ -247,13 +280,24 @@ public class ExampleMetadata
     public ColumnMetadata getColumnMetadata(ConnectorSession session, ConnectorTableHandle tableHandle, ColumnHandle columnHandle)
     {
         log.info("getColumnMetadata");
-        ColumnMetadata columnMetadata = ((ExampleColumnHandle) columnHandle).getColumnMetadata();
-        Type type = columnMetadata.getType();
-        String columnName = columnMetadata.getName();  //属性名称
-        String comment = columnMetadata.getComment();  //字段备注信息
-        String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
-        log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
-        return columnMetadata;
+        {
+//            ColumnMetadata columnMetadata = ((ExampleColumnHandle) columnHandle).getColumnMetadata();
+//            Type type = columnMetadata.getType();
+//            String columnName = columnMetadata.getName();  //属性名称
+//            String comment = columnMetadata.getComment();  //字段备注信息
+//            String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
+//            log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
+//            return columnMetadata;
+        }
+        {
+            ColumnMetadata columnMetadata = ((SaphanaColumnHandle) columnHandle).getColumnMetadata();
+            Type type = columnMetadata.getType();
+            String columnName = columnMetadata.getName();  //属性名称
+            String comment = columnMetadata.getComment();  //字段备注信息
+            String displayName = columnMetadata.getType().getDisplayName(); //字段数据属性类型名称
+            log.info("columnName:" + columnName + ",comment:" + comment + ",displayName:" + displayName);
+            return columnMetadata;
+        }
     }
 
     /***
@@ -271,7 +315,7 @@ public class ExampleMetadata
         requireNonNull(prefix, "prefix is null");
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> columns = ImmutableMap.builder();
         for (SchemaTableName tableName : listTables(session, prefix)) {
-            ConnectorTableMetadata tableMetadata = getTableMetadata(tableName);
+            ConnectorTableMetadata tableMetadata = getTableMetadataFromExample(tableName);
             // table can disappear during listing operation
             if (tableMetadata != null) {
                 columns.put(tableName, tableMetadata.getColumns());
@@ -280,18 +324,40 @@ public class ExampleMetadata
         return columns.build();
     }
 
-    private ConnectorTableMetadata getTableMetadata(SchemaTableName tableName)
+    /***
+     * 给example使用
+     * @param tableName
+     * @return
+     */
+    private ConnectorTableMetadata getTableMetadataFromExample(SchemaTableName tableName)
     {
+        //判断schema是否存在
         if (!listSchemaNames().contains(tableName.getSchemaName())) {
             return null;
         }
-
-        ExampleTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+        ExampleTable table = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (table == null) {
             return null;
         }
-
         return new ConnectorTableMetadata(tableName, table.getColumnsMetadata());
+    }
+
+    /**
+     * 给hana使用
+     * @param tableName
+     * @return
+     */
+    private ConnectorTableMetadata getTableMetadataFromHana(SchemaTableName tableName)
+    {
+        //判断schema是否存在
+        if (!listSchemaNames().contains(tableName.getSchemaName())) {
+            return null;
+        }
+        SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+        if (saphanaTable == null) {
+            return null;
+        }
+        return new ConnectorTableMetadata(tableName, saphanaTable.getColumnsMetadata());
     }
 
     private List<SchemaTableName> listTables(ConnectorSession session, SchemaTablePrefix prefix)

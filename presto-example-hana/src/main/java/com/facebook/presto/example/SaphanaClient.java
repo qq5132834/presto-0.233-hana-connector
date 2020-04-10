@@ -34,33 +34,33 @@ public class SaphanaClient
     private static Map<String, List<String>> schemaTables = new HashMap<>();         //schema与table list关系
     private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
 
+
     public static String getSCHEMA(){
         return SCHEMA;
+    }
+
+    static {
+        //初始化表
+        List<String> tables = new ArrayList<>();
+        tables.add("user");
+        tables.add("company");
+        schemaTables.put("sics_pod_schema", tables);
+
+        //初始化字段
+        List<SaphanaColumn> columns1 = new ArrayList<>();
+        columns1.add(new SaphanaColumn("user", "name", "VARCHAR", 20));
+        columns1.add(new SaphanaColumn("user", "age", "BIGINT", 10));
+        tableColumns.put("user", columns1);
+
+        List<SaphanaColumn> columns2 = new ArrayList<>();
+        columns2.add(new SaphanaColumn("company", "text", "VARCHAR", 20));
+        columns2.add(new SaphanaColumn("company", "value", "BIGINT", 10));
+        tableColumns.put("company", columns2);
     }
 
     @Inject
     public SaphanaClient(){
 
-        if(true){
-
-            //初始化表
-            List<String> tables = new ArrayList<>();
-            tables.add("user");
-            tables.add("company");
-            schemaTables.put("sics_pod_schema".toUpperCase(), tables);
-
-            //初始化字段
-            List<SaphanaColumn> columns1 = new ArrayList<>();
-            columns1.add(new SaphanaColumn("user", "name", "VARCHAR", 20));
-            columns1.add(new SaphanaColumn("user", "age", "INTEGER", 10));
-            tableColumns.put("user", columns1);
-
-            List<SaphanaColumn> columns2 = new ArrayList<>();
-            columns2.add(new SaphanaColumn("company", "text", "VARCHAR", 20));
-            columns2.add(new SaphanaColumn("company", "value", "INTEGER", 10));
-            tableColumns.put("company", columns2);
-
-        }
     }
 
     /***
@@ -72,9 +72,13 @@ public class SaphanaClient
      */
     public SaphanaTable getTable(String schemaName, String tableName)
     {
+        log.info("getTable.schemaName:" + schemaName + ",tableName:" + tableName);
+        log.info("schemaTables:" + JSONObject.toJSONString(schemaTables));
+        //log.info("tableColumns:" + JSONObject.toJSONString(tableColumns));
         requireNonNull(schemaName, "schemaName is null");
         requireNonNull(tableName, "tableName is null");
         List<String> tables = schemaTables.get(schemaName);
+        log.info("tabls:" + JSONObject.toJSONString(tables));
         if(tables!=null && tables.contains(tableName)){
             //如果schema与table存在
             SaphanaTable saphanaTable = new SaphanaTable(tableName, tableColumns.get(tableName));
@@ -91,8 +95,8 @@ public class SaphanaClient
      */
     public List<SaphanaColumn> getTableColumn(String tableName) throws Exception{
 
-        if(tableColumns.get(tableName.toUpperCase())!=null){
-            return tableColumns.get(tableName.toUpperCase());
+        if(tableColumns.get(tableName)!=null){
+            return tableColumns.get(tableName);
         }
 
         Connection con = this.getConnection();
@@ -132,8 +136,8 @@ public class SaphanaClient
     public List<String> getTables(String schema){
 
         //判断缓存中是否存在
-        if(schemaTables.get(schema.toUpperCase()) != null){
-            return schemaTables.get(schema.toUpperCase());
+        if(schemaTables.get(schema) != null){
+            return schemaTables.get(schema);
         }
 
         List<String> list = new ArrayList<>();

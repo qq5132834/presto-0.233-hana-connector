@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.example;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.spi.ColumnHandle;
 import com.facebook.presto.spi.ConnectorSession;
 import com.facebook.presto.spi.ConnectorSplit;
@@ -31,6 +32,7 @@ import static java.util.Objects.requireNonNull;
 public class ExampleRecordSetProvider
         implements ConnectorRecordSetProvider
 {
+    private static final Logger logger = Logger.get(ExampleRecordSetProvider.class);
     private final String connectorId;
 
     @Inject
@@ -40,17 +42,36 @@ public class ExampleRecordSetProvider
     }
 
     @Override
-    public RecordSet getRecordSet(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorSplit split, List<? extends ColumnHandle> columns)
+    public RecordSet getRecordSet(ConnectorTransactionHandle transactionHandle,
+                                  ConnectorSession session,
+                                  ConnectorSplit split,
+                                  List<? extends ColumnHandle> columns)
     {
-        requireNonNull(split, "partitionChunk is null");
-        ExampleSplit exampleSplit = (ExampleSplit) split;
-        checkArgument(exampleSplit.getConnectorId().equals(connectorId), "split is not for this connector");
+        logger.info("getRecordSet");
+        {
+//            requireNonNull(split, "partitionChunk is null");
+//            ExampleSplit exampleSplit = (ExampleSplit) split;
+//            checkArgument(exampleSplit.getConnectorId().equals(connectorId), "split is not for this connector");
+//
+//            ImmutableList.Builder<ExampleColumnHandle> handles = ImmutableList.builder();
+//            for (ColumnHandle handle : columns) {
+//                handles.add((ExampleColumnHandle) handle);
+//            }
+//
+//            return new ExampleRecordSet(exampleSplit, handles.build());
+        }
+        {
+            requireNonNull(split, "partitionChunk is null");
+            SaphanaSplit saphanaSplit = (SaphanaSplit) split;
+            checkArgument(saphanaSplit.getConnectorId().equals(connectorId), "split is not for this connector");
 
-        ImmutableList.Builder<ExampleColumnHandle> handles = ImmutableList.builder();
-        for (ColumnHandle handle : columns) {
-            handles.add((ExampleColumnHandle) handle);
+            ImmutableList.Builder<SaphanaColumnHandle> handles = ImmutableList.builder();
+            for (ColumnHandle handle : columns) {
+                handles.add((SaphanaColumnHandle) handle);
+            }
+
+            return new SaphanaRecordSet(saphanaSplit, handles.build());
         }
 
-        return new ExampleRecordSet(exampleSplit, handles.build());
     }
 }
