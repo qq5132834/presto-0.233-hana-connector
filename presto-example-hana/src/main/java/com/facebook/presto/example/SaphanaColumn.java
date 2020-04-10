@@ -15,11 +15,20 @@ package com.facebook.presto.example;
 
 public class SaphanaColumn
 {
-    private String tableName;
-    private String columnName;
-    private Integer dataType;
-    private String typeName;
-    private Integer columnSize;
+    private String tableName;  //表名
+    private String columnName; //字段名称
+    private Integer dataType;  //
+    private String typeName;  //字段数据类型
+    private Integer columnSize;  //字段大小
+
+    public SaphanaColumn(){}
+
+    public SaphanaColumn(String tableName, String columnName, String typeName, Integer columnSize){
+        this.tableName = tableName;
+        this.columnName = columnName;
+        this.typeName = typeName;
+        this.columnSize = columnSize;
+    }
 
     public String getTableName() {
         return tableName;

@@ -179,7 +179,7 @@ public class ExampleMetadata
 
     /***
      * 第4步调用
-     * 获取表的列信息
+     * 获取表的列信息【表中全部的字段信息】
      *
      * @param session
      * @param tableHandle
@@ -212,7 +212,7 @@ public class ExampleMetadata
     }
 
     /***
-     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息
+     * 获取表的某一列的元数据信息，包含了字段名称，类型等相关信息【select column1, column2】中指定的字段
      * @param session
      * @param tableHandle
      * @param columnHandle

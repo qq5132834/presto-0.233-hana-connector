@@ -34,6 +34,28 @@ public class SaphanaClient
     @Inject
     public SaphanaClient(){
 
+        if(true){
+
+            //初始化表
+            List<String> tables = new ArrayList<>();
+            tables.add("user");
+            tables.add("company");
+            schemaTables.put("sics_pod_schema".toUpperCase(), tables);
+
+            //初始化字段
+            List<SaphanaColumn> columns1 = new ArrayList<>();
+            columns1.add(new SaphanaColumn("user", "name", "VARCHAR", 20));
+            columns1.add(new SaphanaColumn("user", "age", "INTEGER", 10));
+            tableColumns.put("user", columns1);
+
+            List<SaphanaColumn> columns2 = new ArrayList<>();
+            columns2.add(new SaphanaColumn("company", "text", "VARCHAR", 20));
+            columns2.add(new SaphanaColumn("company", "value", "INTEGER", 10));
+            tableColumns.put("company", columns2);
+
+        }
+
+
     }
 
     /***
