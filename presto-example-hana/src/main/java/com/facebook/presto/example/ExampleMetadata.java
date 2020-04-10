@@ -49,11 +49,14 @@ public class ExampleMetadata
 
     private final ExampleClient exampleClient;
 
+    private final SaphanaClient saphanaClient;
+
     @Inject
-    public ExampleMetadata(ExampleConnectorId connectorId, ExampleClient exampleClient)
+    public ExampleMetadata(ExampleConnectorId connectorId, ExampleClient exampleClient, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.exampleClient = requireNonNull(exampleClient, "client is null");
+        this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");
     }
 
     /***
@@ -150,8 +153,16 @@ public class ExampleMetadata
 
         ImmutableList.Builder<SchemaTableName> builder = ImmutableList.builder();
         for (String schemaName : schemaNames) {
+            //http
             for (String tableName : exampleClient.getTableNames(schemaName)) {
+                log.info("listTables:" + tableName );
                 builder.add(new SchemaTableName(schemaName, tableName));
+            }
+            //hana
+            List<String> list = this.saphanaClient.getTables("sics_pod_schema");
+            for (String tn: list) {
+                log.info("tn:" + tn);
+                builder.add(new SchemaTableName(schemaName, tn));
             }
         }
         return builder.build();
@@ -194,6 +205,8 @@ public class ExampleMetadata
     @Override
     public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
     {
+        log.info("listTableColumns");
+
         requireNonNull(prefix, "prefix is null");
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> columns = ImmutableMap.builder();
         for (SchemaTableName tableName : listTables(session, prefix)) {

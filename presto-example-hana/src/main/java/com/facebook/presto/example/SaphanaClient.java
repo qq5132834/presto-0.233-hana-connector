@@ -28,12 +28,26 @@ public class SaphanaClient
     private static final String USER = "SYSTEM";
     private static final String PASSWORD = "sicsPoD2020";
 
+    private static Map<String, List<String>> schemaTables = new HashMap<>();
+    private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();
+
     @Inject
     public SaphanaClient(){
 
     }
 
+    /***
+     * 获取某张表下的字段属性
+     * @param tableName
+     * @return
+     * @throws Exception
+     */
     public List<SaphanaColumn> getTableColumn(String tableName) throws Exception{
+
+        if(tableColumns.get(tableName.toUpperCase())!=null){
+            return tableColumns.get(tableName.toUpperCase());
+        }
+
         Connection con = this.getConnection();
         DatabaseMetaData databaseMetaData = con.getMetaData();
         ResultSet rs = databaseMetaData.getColumns(null, null, tableName.toUpperCase(), null);
@@ -56,25 +70,44 @@ public class SaphanaClient
             columns.add(saphanaColumn);
         }
         closeConnection(con, null);
+
+        tableColumns.put(tableName.toUpperCase(), columns);
+
         log.info("getTableColumn.tableName:" + tableName + ",columns:" + JSONObject.toJSONString(columns));
         return columns;
     }
 
+    /***
+     * 获取hana中schema下的表
+     * @param schema
+     * @return
+     */
     public List<String> getTables(String schema){
+
+        //判断缓存中是否存在
+        if(schemaTables.get(schema.toUpperCase()) != null){
+            return schemaTables.get(schema.toUpperCase());
+        }
 
         List<String> list = new ArrayList<>();
         try {
             Connection con = this.getConnection();
             DatabaseMetaData databaseMetaData = con.getMetaData();
             ResultSet rs = databaseMetaData.getTables(null, schema.toUpperCase(), null, new String[]{"TABLE"});
-
+            log.info("schema:" + schema.toUpperCase());
             while (rs.next()){
+
                 String tableName = rs.getString("TABLE_NAME");
+                log.info(tableName);
                 list.add(tableName);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        //缓存起来
+        schemaTables.put(schema.toUpperCase(),list);
+
         log.info("getTables:" + JSONObject.toJSONString(list));
         return list;
     }
