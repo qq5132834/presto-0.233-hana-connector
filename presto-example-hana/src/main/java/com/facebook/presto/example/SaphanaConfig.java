@@ -13,14 +13,17 @@
  */
 package com.facebook.presto.example;
 
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.airlift.configuration.Config;
+import com.facebook.airlift.log.Logger;
 
 import javax.validation.constraints.NotNull;
 
 import java.net.URI;
 
-public class ExampleConfig
+public class SaphanaConfig
 {
+    private static final Logger log = Logger.get(SaphanaConfig.class);
     private URI metadata;
 
     @NotNull
@@ -29,9 +32,16 @@ public class ExampleConfig
         return metadata;
     }
 
+    /****
+     * metadata-uri 来自 /etc/catalog/hana.properties中配置项
+     *
+     * @param metadata
+     * @return
+     */
     @Config("metadata-uri")
-    public ExampleConfig setMetadata(URI metadata)
+    public SaphanaConfig setMetadata(URI metadata)
     {
+        log.info("metadata.uri:" + metadata.toString());
         this.metadata = metadata;
         return this;
     }

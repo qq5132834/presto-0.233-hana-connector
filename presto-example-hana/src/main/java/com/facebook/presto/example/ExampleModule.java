@@ -55,7 +55,7 @@ public class ExampleModule
 
         binder.bind(SaphanaClient.class).in(Scopes.SINGLETON);
 
-        configBinder(binder).bindConfig(ExampleConfig.class);
+        configBinder(binder).bindConfig(SaphanaConfig.class);
 
         jsonBinder(binder).addDeserializerBinding(Type.class).to(TypeDeserializer.class);
 
