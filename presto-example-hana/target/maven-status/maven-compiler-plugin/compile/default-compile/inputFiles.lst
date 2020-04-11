@@ -5,6 +5,7 @@
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaClient.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaDemo.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaModule.java
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnData.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorFactory.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTableHandle.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnHandle.java

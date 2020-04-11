@@ -4,6 +4,8 @@
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumn.java">
 </file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnData.java">
+</file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnHandle.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConfig.java">
@@ -69,5 +71,7 @@
 <file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleTableHandle.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestSaphanaColumn.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestSaphanaColumnData.java">
 </file>
 </checkstyle>

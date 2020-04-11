@@ -58,8 +58,7 @@ public class SaphanaRecordSetProvider
             for (ColumnHandle handle : columns) {
                 handles.add((SaphanaColumnHandle) handle);
             }
-
-            return new SaphanaRecordSet(saphanaSplit, handles.build());
+            return new SaphanaRecordSet(saphanaSplit, new SaphanaTableHandle(saphanaSplit.getConnectorId(), saphanaSplit.getSchemaName(), saphanaSplit.getTableName()) ,handles.build());
         }
 
     }

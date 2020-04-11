@@ -48,11 +48,11 @@ public class SaphanaRecordCursor
     private final int[] fieldToColumnIndex;
 
     private final Iterator<String> lines;
-    private final long totalBytes;
+    private long totalBytes = 0;
 
     private List<String> fields;
 
-    public SaphanaRecordCursor(List<SaphanaColumnHandle> columnHandles)
+    public SaphanaRecordCursor(List<SaphanaColumnHandle> columnHandles, List<String> list)
     {
         this.columnHandles = columnHandles;
 
@@ -62,12 +62,9 @@ public class SaphanaRecordCursor
             fieldToColumnIndex[i] = columnHandle.getOrdinalPosition();
         }
 
-        String str1 = "xixi, 1";
-        String str2 = "haha, 2";
-        totalBytes = str1.getBytes().length + str2.getBytes().length;
-        List<String> list = new ArrayList<>();
-        list.add(str1);
-        list.add(str2);
+        for (String line: list) {
+            totalBytes = totalBytes + line.getBytes().length;
+        }
 
         lines = list.iterator();
 

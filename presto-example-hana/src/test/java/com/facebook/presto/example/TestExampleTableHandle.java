@@ -22,25 +22,25 @@ import static org.testng.Assert.assertEquals;
 
 public class TestExampleTableHandle
 {
-    private final ExampleTableHandle tableHandle = new ExampleTableHandle("connectorId", "schemaName", "tableName");
-
-    @Test
-    public void testJsonRoundTrip()
-    {
-        JsonCodec<ExampleTableHandle> codec = jsonCodec(ExampleTableHandle.class);
-        String json = codec.toJson(tableHandle);
-        ExampleTableHandle copy = codec.fromJson(json);
-        assertEquals(copy, tableHandle);
-    }
-
-    @Test
-    public void testEquivalence()
-    {
-        EquivalenceTester.equivalenceTester()
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "table"), new ExampleTableHandle("connector", "schema", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connectorX", "schema", "table"), new ExampleTableHandle("connectorX", "schema", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schemaX", "table"), new ExampleTableHandle("connector", "schemaX", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "tableX"), new ExampleTableHandle("connector", "schema", "tableX"))
-                .check();
-    }
+//    private final ExampleTableHandle tableHandle = new ExampleTableHandle("connectorId", "schemaName", "tableName");
+//
+//    @Test
+//    public void testJsonRoundTrip()
+//    {
+//        JsonCodec<ExampleTableHandle> codec = jsonCodec(ExampleTableHandle.class);
+//        String json = codec.toJson(tableHandle);
+//        ExampleTableHandle copy = codec.fromJson(json);
+//        assertEquals(copy, tableHandle);
+//    }
+//
+//    @Test
+//    public void testEquivalence()
+//    {
+//        EquivalenceTester.equivalenceTester()
+//                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "table"), new ExampleTableHandle("connector", "schema", "table"))
+//                .addEquivalentGroup(new ExampleTableHandle("connectorX", "schema", "table"), new ExampleTableHandle("connectorX", "schema", "table"))
+//                .addEquivalentGroup(new ExampleTableHandle("connector", "schemaX", "table"), new ExampleTableHandle("connector", "schemaX", "table"))
+//                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "tableX"), new ExampleTableHandle("connector", "schema", "tableX"))
+//                .check();
+//    }
 }

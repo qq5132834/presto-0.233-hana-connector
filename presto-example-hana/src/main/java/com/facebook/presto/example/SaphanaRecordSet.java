@@ -28,21 +28,29 @@ import static java.util.Objects.requireNonNull;
 public class SaphanaRecordSet
         implements RecordSet
 {
+    private final SaphanaTableHandle tableHandle;
     private final List<SaphanaColumnHandle> columnHandles;
     private final List<Type> columnTypes;
+
+    private final List<String> list;
     private final ByteSource byteSource = null;
 
-    public SaphanaRecordSet(SaphanaSplit split, List<SaphanaColumnHandle> columnHandles)
+    public SaphanaRecordSet(SaphanaSplit split, SaphanaTableHandle tableHandle,  List<SaphanaColumnHandle> columnHandles)
     {
         requireNonNull(split, "split is null");
 
+        this.tableHandle = requireNonNull(tableHandle, "table is null");
         this.columnHandles = requireNonNull(columnHandles, "column handles is null");
         ImmutableList.Builder<Type> types = ImmutableList.builder();
         for (SaphanaColumnHandle column : columnHandles) {
             types.add(column.getColumnType());
         }
+
         this.columnTypes = types.build();
 
+
+        //TODO 这里根据sql查询不同的数据。byteSource就是用来存储数据用的，然后将bytesource传递给 RecordCursor 通过游标遍历
+        list = SaphanaColumnData.getColumnDatas(tableHandle.getTableName());
 //        try {
 //            byteSource = Resources.asByteSource(split.getUri().toURL());
 //        }
@@ -50,6 +58,7 @@ public class SaphanaRecordSet
 //            throw new RuntimeException(e);
 //        }
     }
+
 
     @Override
     public List<Type> getColumnTypes()
@@ -60,6 +69,6 @@ public class SaphanaRecordSet
     @Override
     public RecordCursor cursor()
     {
-        return new SaphanaRecordCursor(columnHandles);
+        return new SaphanaRecordCursor(columnHandles, list);
     }
 }
