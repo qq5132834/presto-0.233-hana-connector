@@ -41,92 +41,92 @@ import static java.util.Objects.requireNonNull;
 
 public class ExampleClient
 {
-    private static final Logger log = Logger.get(ExampleClient.class);
-    /**
-     * SchemaName -> (TableName -> TableMetadata)
-     */
-    private final Supplier<Map<String, Map<String, ExampleTable>>> schemas;
-
-    @Inject
-    public ExampleClient(ExampleConfig config, JsonCodec<Map<String, List<ExampleTable>>> catalogCodec)
-    {
-        requireNonNull(config, "config is null");
-        requireNonNull(catalogCodec, "catalogCodec is null");
-
-        schemas = Suppliers.memoize(schemasSupplier(catalogCodec, config.getMetadata()));
-    }
-
-    public Set<String> getSchemaNames()
-    {
-        log.info("getSchemaNames");
-        return schemas.get().keySet();
-    }
-
-    public Set<String> getTableNames(String schema)
-    {
-        log.info("getTableNames");
-        requireNonNull(schema, "schema is null");
-        Map<String, ExampleTable> tables = schemas.get().get(schema);
-        if (tables == null) {
-            return ImmutableSet.of();
-        }
-        return tables.keySet();
-    }
-
-    public ExampleTable getTable(String schema, String tableName)
-    {
-        log.info("getTable");
-        requireNonNull(schema, "schema is null");
-        requireNonNull(tableName, "tableName is null");
-        Map<String, ExampleTable> tables = schemas.get().get(schema);
-        if (tables == null) {
-            return null;
-        }
-        return tables.get(tableName);
-    }
-
-    private static Supplier<Map<String, Map<String, ExampleTable>>> schemasSupplier(final JsonCodec<Map<String, List<ExampleTable>>> catalogCodec, final URI metadataUri)
-    {
-        log.info("schemasSupplier");
-        return () -> {
-            try {
-                log.info("schemasSupplier");
-                return lookupSchemas(metadataUri, catalogCodec);
-            }
-            catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        };
-    }
-
-    private static Map<String, Map<String, ExampleTable>> lookupSchemas(URI metadataUri, JsonCodec<Map<String, List<ExampleTable>>> catalogCodec)
-            throws IOException
-    {
-        log.info("lookupSchemas");
-        URL result = metadataUri.toURL();
-        String json = Resources.toString(result, UTF_8);
-        Map<String, List<ExampleTable>> catalog = catalogCodec.fromJson(json);
-
-        return ImmutableMap.copyOf(transformValues(catalog, resolveAndIndexTables(metadataUri)));
-    }
-
-    private static Function<List<ExampleTable>, Map<String, ExampleTable>> resolveAndIndexTables(final URI metadataUri)
-    {
-        log.info("resolveAndIndexTables");
-        return tables -> {
-            log.info("resolveAndIndexTables");
-            Iterable<ExampleTable> resolvedTables = transform(tables, tableUriResolver(metadataUri));
-            return ImmutableMap.copyOf(uniqueIndex(resolvedTables, ExampleTable::getName));
-        };
-    }
-
-    private static Function<ExampleTable, ExampleTable> tableUriResolver(final URI baseUri)
-    {
-        log.info("tableUriResolver");
-        return table -> {
-            log.info("tableUriResolver");
-            List<URI> sources = ImmutableList.copyOf(transform(table.getSources(), baseUri::resolve));
-            return new ExampleTable(table.getName(), table.getColumns(), sources);
-        };
-    }
+//    private static final Logger log = Logger.get(ExampleClient.class);
+//    /**
+//     * SchemaName -> (TableName -> TableMetadata)
+//     */
+//    private final Supplier<Map<String, Map<String, ExampleTable>>> schemas;
+//
+//    @Inject
+//    public ExampleClient(ExampleConfig config, JsonCodec<Map<String, List<ExampleTable>>> catalogCodec)
+//    {
+//        requireNonNull(config, "config is null");
+//        requireNonNull(catalogCodec, "catalogCodec is null");
+//
+//        schemas = Suppliers.memoize(schemasSupplier(catalogCodec, config.getMetadata()));
+//    }
+//
+//    public Set<String> getSchemaNames()
+//    {
+//        log.info("getSchemaNames");
+//        return schemas.get().keySet();
+//    }
+//
+//    public Set<String> getTableNames(String schema)
+//    {
+//        log.info("getTableNames");
+//        requireNonNull(schema, "schema is null");
+//        Map<String, ExampleTable> tables = schemas.get().get(schema);
+//        if (tables == null) {
+//            return ImmutableSet.of();
+//        }
+//        return tables.keySet();
+//    }
+//
+//    public ExampleTable getTable(String schema, String tableName)
+//    {
+//        log.info("getTable");
+//        requireNonNull(schema, "schema is null");
+//        requireNonNull(tableName, "tableName is null");
+//        Map<String, ExampleTable> tables = schemas.get().get(schema);
+//        if (tables == null) {
+//            return null;
+//        }
+//        return tables.get(tableName);
+//    }
+//
+//    private static Supplier<Map<String, Map<String, ExampleTable>>> schemasSupplier(final JsonCodec<Map<String, List<ExampleTable>>> catalogCodec, final URI metadataUri)
+//    {
+//        log.info("schemasSupplier");
+//        return () -> {
+//            try {
+//                log.info("schemasSupplier");
+//                return lookupSchemas(metadataUri, catalogCodec);
+//            }
+//            catch (IOException e) {
+//                throw new UncheckedIOException(e);
+//            }
+//        };
+//    }
+//
+//    private static Map<String, Map<String, ExampleTable>> lookupSchemas(URI metadataUri, JsonCodec<Map<String, List<ExampleTable>>> catalogCodec)
+//            throws IOException
+//    {
+//        log.info("lookupSchemas");
+//        URL result = metadataUri.toURL();
+//        String json = Resources.toString(result, UTF_8);
+//        Map<String, List<ExampleTable>> catalog = catalogCodec.fromJson(json);
+//
+//        return ImmutableMap.copyOf(transformValues(catalog, resolveAndIndexTables(metadataUri)));
+//    }
+//
+//    private static Function<List<ExampleTable>, Map<String, ExampleTable>> resolveAndIndexTables(final URI metadataUri)
+//    {
+//        log.info("resolveAndIndexTables");
+//        return tables -> {
+//            log.info("resolveAndIndexTables");
+//            Iterable<ExampleTable> resolvedTables = transform(tables, tableUriResolver(metadataUri));
+//            return ImmutableMap.copyOf(uniqueIndex(resolvedTables, ExampleTable::getName));
+//        };
+//    }
+//
+//    private static Function<ExampleTable, ExampleTable> tableUriResolver(final URI baseUri)
+//    {
+//        log.info("tableUriResolver");
+//        return table -> {
+//            log.info("tableUriResolver");
+//            List<URI> sources = ImmutableList.copyOf(transform(table.getSources(), baseUri::resolve));
+//            return new ExampleTable(table.getName(), table.getColumns(), sources);
+//        };
+//    }
 }

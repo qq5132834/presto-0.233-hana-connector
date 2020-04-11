@@ -59,7 +59,8 @@ public class ExampleModule
         configBinder(binder).bindConfig(ExampleConfig.class);
 
         jsonBinder(binder).addDeserializerBinding(Type.class).to(TypeDeserializer.class);
-        jsonCodecBinder(binder).bindMapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
+        //jsonCodecBinder(binder).bindMapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
+        jsonCodecBinder(binder).bindMapJsonCodec(String.class, listJsonCodec(SaphanaTable.class));
     }
 
     public static final class TypeDeserializer

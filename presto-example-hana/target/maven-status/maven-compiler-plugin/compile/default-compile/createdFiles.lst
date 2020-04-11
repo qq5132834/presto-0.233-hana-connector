@@ -1,7 +1,6 @@
 com/facebook/presto/example/ExampleSplitManager.class
 com/facebook/presto/example/SaphanaTableLayoutHandle.class
 com/facebook/presto/example/ExampleHandleResolver.class
-com/facebook/presto/example/ExampleConnectorFactory.class
 com/facebook/presto/example/SaphanaSplit.class
 com/facebook/presto/example/ExampleMetadata.class
 com/facebook/presto/example/ExampleRecordSetProvider.class
@@ -15,16 +14,12 @@ com/facebook/presto/example/ExampleTransactionHandle.class
 com/facebook/presto/example/ExamplePlugin.class
 com/facebook/presto/example/SaphanaTableHandle.class
 com/facebook/presto/example/ExampleClient.class
-com/facebook/presto/example/ExampleColumn.class
 com/facebook/presto/example/SaphanaColumnHandle.class
+com/facebook/presto/example/SaphanaConnectorFactory.class
 com/facebook/presto/example/SaphanaRecordSet.class
 com/facebook/presto/example/SaphanaTransactionHandle.class
 com/facebook/presto/example/SaphanaTable.class
 com/facebook/presto/example/ExampleTableLayoutHandle.class
-com/facebook/presto/example/ExampleDemo.class
-com/facebook/presto/example/ExampleRecordCursor.class
 com/facebook/presto/example/ExampleConfig.class
 com/facebook/presto/example/ExampleTableHandle.class
-com/facebook/presto/example/ExampleRecordSet.class
-com/facebook/presto/example/ExampleSplit.class
-com/facebook/presto/example/ExampleTable.class
+com/facebook/presto/example/SaphanaDemo.class

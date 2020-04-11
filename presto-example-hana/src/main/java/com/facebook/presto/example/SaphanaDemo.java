@@ -13,6 +13,6 @@
  */
 package com.facebook.presto.example;
 
-public class ExampleDemo
+public class SaphanaDemo
 {
 }
