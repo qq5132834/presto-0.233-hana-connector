@@ -27,10 +27,10 @@ import javax.inject.Inject;
 import static com.facebook.presto.example.SaphanaTransactionHandle.INSTANCE;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleConnector
+public class SaphanaConnector
         implements Connector
 {
-    private static final Logger log = Logger.get(ExampleConnector.class);
+    private static final Logger log = Logger.get(SaphanaConnector.class);
 
     private final LifeCycleManager lifeCycleManager;
     private final SaphanaMetadata metadata;
@@ -38,7 +38,7 @@ public class ExampleConnector
     private final SaphanaRecordSetProvider recordSetProvider;
 
     @Inject
-    public ExampleConnector(
+    public SaphanaConnector(
             LifeCycleManager lifeCycleManager,
             SaphanaMetadata metadata,
             SaphanaSplitManager splitManager,

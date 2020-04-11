@@ -20,7 +20,7 @@ import com.facebook.presto.spi.ConnectorTableHandle;
 import com.facebook.presto.spi.ConnectorTableLayoutHandle;
 import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
 
-public class ExampleHandleResolver
+public class SaphanaHandleResolver
         implements ConnectorHandleResolver
 {
     @Override

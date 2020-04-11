@@ -38,7 +38,7 @@ public class SaphanaConnectorFactory
     @Override
     public ConnectorHandleResolver getHandleResolver()
     {
-        return new ExampleHandleResolver();
+        return new SaphanaHandleResolver();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SaphanaConnectorFactory
                     .setRequiredConfigurationProperties(requiredConfig)
                     .initialize();
 
-            return injector.getInstance(ExampleConnector.class);
+            return injector.getInstance(SaphanaConnector.class);
         }
         catch (Exception e) {
             throwIfUnchecked(e);
