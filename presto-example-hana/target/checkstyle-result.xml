@@ -2,4 +2,8 @@
 <checkstyle version="8.16">
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConfig.java">
 </file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorFactory.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaModule.java">
+</file>
 </checkstyle>

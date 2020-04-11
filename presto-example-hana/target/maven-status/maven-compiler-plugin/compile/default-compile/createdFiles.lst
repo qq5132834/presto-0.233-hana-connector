@@ -10,11 +10,11 @@ com/facebook/presto/example/SaphanaMetadata.class
 com/facebook/presto/example/SaphanaConfig.class
 com/facebook/presto/example/SaphanaSplitManager.class
 com/facebook/presto/example/SaphanaConnectorId.class
-com/facebook/presto/example/ExampleModule$TypeDeserializer.class
 com/facebook/presto/example/SaphanaDemo.class
+com/facebook/presto/example/SaphanaModule.class
 com/facebook/presto/example/SaphanaRecordCursor.class
-com/facebook/presto/example/ExampleModule.class
 com/facebook/presto/example/ExamplePlugin.class
 com/facebook/presto/example/SaphanaConnector.class
 com/facebook/presto/example/SaphanaHandleResolver.class
+com/facebook/presto/example/SaphanaModule$TypeDeserializer.class
 com/facebook/presto/example/SaphanaTableHandle.class

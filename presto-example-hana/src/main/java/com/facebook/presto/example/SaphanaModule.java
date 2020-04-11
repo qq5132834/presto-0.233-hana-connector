@@ -30,13 +30,13 @@ import static com.facebook.airlift.json.JsonCodecBinder.jsonCodecBinder;
 import static com.facebook.presto.spi.type.TypeSignature.parseTypeSignature;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleModule
+public class SaphanaModule
         implements Module
 {
     private final String connectorId;
     private final TypeManager typeManager;
 
-    public ExampleModule(String connectorId, TypeManager typeManager)
+    public SaphanaModule(String connectorId, TypeManager typeManager)
     {
         this.connectorId = requireNonNull(connectorId, "connector id is null");
         this.typeManager = requireNonNull(typeManager, "typeManager is null");
