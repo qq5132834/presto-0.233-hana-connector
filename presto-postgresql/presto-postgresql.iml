@@ -15,6 +15,7 @@
     <orderEntry type="library" name="Maven: com.facebook.airlift:log:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:concurrent:0.190" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.10.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: io.airlift:joda-to-java-time-bridge:3" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.presto:presto-expressions:0.233" level="project" />
@@ -29,20 +30,16 @@
     <orderEntry type="library" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" name="Maven: com.google.inject:guice:4.2.2" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.48" level="project" />
+    <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.5" level="project" />
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.facebook.presto:presto-spi:0.233" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.openjdk.jol:jol-core:0.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.airlift:slice:0.38" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: io.airlift:units:1.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.8" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.8.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-testing-docker:0.233" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.starburstdata:starburst-spotify-docker-client:8.11.7-0.6" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: net.jodah:failsafe:2.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.beust:jcommander:1.48" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.airlift:testing:0.190" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.airlift:json:0.190" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" level="project" />
@@ -166,6 +163,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.jetty.http2:http2-client:9.4.14.v20181114" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.jetty:jetty-alpn-client:9.4.14.v20181114" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.jetty.http2:http2-http-client-transport:9.4.14.v20181114" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: net.jodah:failsafe:2.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.sonatype.aether:aether-api:1.13.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:6.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jgrapht:jgrapht-core:0.9.0" level="project" />
@@ -185,8 +183,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: antlr:antlr:2.7.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.jodah:expiringmap:0.5.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.197" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:testing-mysql-server-5:0.6" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:testing-mysql-server-base:0.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.airlift:testing-postgresql-server:9.6.3-4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.airlift:command:0.3" level="project" />
   </component>
 </module>
