@@ -46,7 +46,7 @@ public class ExampleMetadata
     private static final Logger log = Logger.get(ExampleMetadata.class);
     private final String connectorId;
 
-    private final ExampleClient exampleClient;
+//    private final ExampleClient exampleClient;
 
     private final SaphanaClient saphanaClient;
 
@@ -54,7 +54,7 @@ public class ExampleMetadata
     public ExampleMetadata(ExampleConnectorId connectorId, ExampleClient exampleClient, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
-        this.exampleClient = requireNonNull(exampleClient, "client is null");
+//        this.exampleClient = requireNonNull(exampleClient, "client is null");
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");
     }
 
@@ -116,7 +116,7 @@ public class ExampleMetadata
     {
         //http
         List<String> list = new ArrayList<>();
-        list.addAll(ImmutableList.copyOf(exampleClient.getSchemaNames()));
+        //list.addAll(ImmutableList.copyOf(exampleClient.getSchemaNames()));
 
         //添加一个hana的schema信息
         list.add(SaphanaClient.getSCHEMA());
@@ -187,22 +187,22 @@ public class ExampleMetadata
     public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull)
     {
         log.info("listTables");
-        Set<String> schemaNames;
+        Set<String> schemaNames = null;
         if (schemaNameOrNull != null) {
             schemaNames = ImmutableSet.of(schemaNameOrNull);
         }
         else {
-            schemaNames = exampleClient.getSchemaNames();
+            //schemaNames = exampleClient.getSchemaNames();
         }
 
         List<SchemaTableName> builder = new ArrayList<>();
-        for (String schemaName : schemaNames) {
-            //http
-            for (String tableName : exampleClient.getTableNames(schemaName)) {
-                log.info("tableName:" + tableName );
-                builder.add(new SchemaTableName(schemaName, tableName));
-            }
-        }
+//        for (String schemaName : schemaNames) {
+//            //http
+//            for (String tableName : exampleClient.getTableNames(schemaName)) {
+//                log.info("tableName:" + tableName );
+//                builder.add(new SchemaTableName(schemaName, tableName));
+//            }
+//        }
 
         for (String schemaName : schemaNames) {
             //获取hana中schema下的表
@@ -315,7 +315,7 @@ public class ExampleMetadata
         requireNonNull(prefix, "prefix is null");
         ImmutableMap.Builder<SchemaTableName, List<ColumnMetadata>> columns = ImmutableMap.builder();
         for (SchemaTableName tableName : listTables(session, prefix)) {
-            ConnectorTableMetadata tableMetadata = getTableMetadataFromExample(tableName);
+            ConnectorTableMetadata tableMetadata = getTableMetadataFromHana(tableName);
             // table can disappear during listing operation
             if (tableMetadata != null) {
                 columns.put(tableName, tableMetadata.getColumns());
@@ -324,23 +324,23 @@ public class ExampleMetadata
         return columns.build();
     }
 
-    /***
-     * 给example使用
-     * @param tableName
-     * @return
-     */
-    private ConnectorTableMetadata getTableMetadataFromExample(SchemaTableName tableName)
-    {
-        //判断schema是否存在
-        if (!listSchemaNames().contains(tableName.getSchemaName())) {
-            return null;
-        }
-        ExampleTable table = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
-        if (table == null) {
-            return null;
-        }
-        return new ConnectorTableMetadata(tableName, table.getColumnsMetadata());
-    }
+//    /***
+//     * 给example使用
+//     * @param tableName
+//     * @return
+//     */
+//    private ConnectorTableMetadata getTableMetadataFromExample(SchemaTableName tableName)
+//    {
+//        //判断schema是否存在
+//        if (!listSchemaNames().contains(tableName.getSchemaName())) {
+//            return null;
+//        }
+//        ExampleTable table = this.exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+//        if (table == null) {
+//            return null;
+//        }
+//        return new ConnectorTableMetadata(tableName, table.getColumnsMetadata());
+//    }
 
     /**
      * 给hana使用
