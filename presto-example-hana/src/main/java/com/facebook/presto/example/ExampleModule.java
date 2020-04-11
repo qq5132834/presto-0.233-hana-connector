@@ -49,9 +49,9 @@ public class ExampleModule
 
         binder.bind(ExampleConnector.class).in(Scopes.SINGLETON);
         binder.bind(SaphanaConnectorId.class).toInstance(new SaphanaConnectorId(connectorId));
-        binder.bind(ExampleMetadata.class).in(Scopes.SINGLETON);
-        binder.bind(ExampleSplitManager.class).in(Scopes.SINGLETON);
-        binder.bind(ExampleRecordSetProvider.class).in(Scopes.SINGLETON);
+        binder.bind(SaphanaMetadata.class).in(Scopes.SINGLETON);
+        binder.bind(SaphanaSplitManager.class).in(Scopes.SINGLETON);
+        binder.bind(SaphanaRecordSetProvider.class).in(Scopes.SINGLETON);
 
         binder.bind(SaphanaClient.class).in(Scopes.SINGLETON);
 

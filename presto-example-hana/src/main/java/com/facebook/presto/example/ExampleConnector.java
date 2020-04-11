@@ -24,7 +24,7 @@ import com.facebook.presto.spi.transaction.IsolationLevel;
 
 import javax.inject.Inject;
 
-import static com.facebook.presto.example.ExampleTransactionHandle.INSTANCE;
+import static com.facebook.presto.example.SaphanaTransactionHandle.INSTANCE;
 import static java.util.Objects.requireNonNull;
 
 public class ExampleConnector
@@ -33,16 +33,16 @@ public class ExampleConnector
     private static final Logger log = Logger.get(ExampleConnector.class);
 
     private final LifeCycleManager lifeCycleManager;
-    private final ExampleMetadata metadata;
-    private final ExampleSplitManager splitManager;
-    private final ExampleRecordSetProvider recordSetProvider;
+    private final SaphanaMetadata metadata;
+    private final SaphanaSplitManager splitManager;
+    private final SaphanaRecordSetProvider recordSetProvider;
 
     @Inject
     public ExampleConnector(
             LifeCycleManager lifeCycleManager,
-            ExampleMetadata metadata,
-            ExampleSplitManager splitManager,
-            ExampleRecordSetProvider recordSetProvider)
+            SaphanaMetadata metadata,
+            SaphanaSplitManager splitManager,
+            SaphanaRecordSetProvider recordSetProvider)
     {
         this.lifeCycleManager = requireNonNull(lifeCycleManager, "lifeCycleManager is null");
         this.metadata = requireNonNull(metadata, "metadata is null");

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.16">
-<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleMetadata.java">
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleConnector.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleModule.java">
 </file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleRecordSetProvider.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleSplitManager.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorId.java">
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaSplitManager.java">
 </file>
 </checkstyle>

@@ -53,6 +53,6 @@ public class ExampleHandleResolver
     @Override
     public Class<? extends ConnectorTransactionHandle> getTransactionHandleClass()
     {
-        return ExampleTransactionHandle.class;
+        return SaphanaTransactionHandle.class;
     }
 }

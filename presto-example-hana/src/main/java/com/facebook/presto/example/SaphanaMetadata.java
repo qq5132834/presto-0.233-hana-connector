@@ -40,16 +40,16 @@ import java.util.*;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleMetadata
+public class SaphanaMetadata
         implements ConnectorMetadata
 {
-    private static final Logger log = Logger.get(ExampleMetadata.class);
+    private static final Logger log = Logger.get(SaphanaMetadata.class);
 
     private final String connectorId;
     private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleMetadata(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
+    public SaphanaMetadata(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");

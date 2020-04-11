@@ -32,15 +32,15 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleSplitManager
+public class SaphanaSplitManager
         implements ConnectorSplitManager
 {
-    private static final Logger log = Logger.get(ExampleSplitManager.class);
+    private static final Logger log = Logger.get(SaphanaSplitManager.class);
     private final String connectorId;
     private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleSplitManager(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
+    public SaphanaSplitManager(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");

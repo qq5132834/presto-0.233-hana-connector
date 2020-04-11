@@ -29,14 +29,14 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleRecordSetProvider
+public class SaphanaRecordSetProvider
         implements ConnectorRecordSetProvider
 {
-    private static final Logger logger = Logger.get(ExampleRecordSetProvider.class);
+    private static final Logger logger = Logger.get(SaphanaRecordSetProvider.class);
     private final String connectorId;
 
     @Inject
-    public ExampleRecordSetProvider(SaphanaConnectorId connectorId)
+    public SaphanaRecordSetProvider(SaphanaConnectorId connectorId)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
     }
