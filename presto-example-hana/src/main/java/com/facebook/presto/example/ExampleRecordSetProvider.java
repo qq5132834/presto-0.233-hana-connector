@@ -36,7 +36,7 @@ public class ExampleRecordSetProvider
     private final String connectorId;
 
     @Inject
-    public ExampleRecordSetProvider(ExampleConnectorId connectorId)
+    public ExampleRecordSetProvider(SaphanaConnectorId connectorId)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
     }

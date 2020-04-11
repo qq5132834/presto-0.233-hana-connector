@@ -4,8 +4,8 @@ com/facebook/presto/example/ExampleHandleResolver.class
 com/facebook/presto/example/SaphanaSplit.class
 com/facebook/presto/example/ExampleMetadata.class
 com/facebook/presto/example/ExampleRecordSetProvider.class
-com/facebook/presto/example/ExampleConnectorId.class
 com/facebook/presto/example/ExampleConnector.class
+com/facebook/presto/example/SaphanaConnectorId.class
 com/facebook/presto/example/ExampleModule$TypeDeserializer.class
 com/facebook/presto/example/SaphanaRecordCursor.class
 com/facebook/presto/example/ExampleModule.class

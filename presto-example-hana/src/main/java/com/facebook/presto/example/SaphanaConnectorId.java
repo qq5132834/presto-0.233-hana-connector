@@ -17,11 +17,11 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
-public final class ExampleConnectorId
+public final class SaphanaConnectorId
 {
     private final String id;
 
-    public ExampleConnectorId(String id)
+    public SaphanaConnectorId(String id)
     {
         this.id = requireNonNull(id, "id is null");
     }
@@ -48,7 +48,7 @@ public final class ExampleConnectorId
             return false;
         }
 
-        ExampleConnectorId other = (ExampleConnectorId) obj;
+        SaphanaConnectorId other = (SaphanaConnectorId) obj;
         return Objects.equals(this.id, other.id);
     }
 }

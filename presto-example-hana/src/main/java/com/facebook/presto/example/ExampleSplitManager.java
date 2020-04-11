@@ -40,7 +40,7 @@ public class ExampleSplitManager
     private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleSplitManager(ExampleConnectorId connectorId, SaphanaClient saphanaClient)
+    public ExampleSplitManager(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");

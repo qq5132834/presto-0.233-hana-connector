@@ -48,7 +48,7 @@ public class ExampleModule
         binder.bind(TypeManager.class).toInstance(typeManager);
 
         binder.bind(ExampleConnector.class).in(Scopes.SINGLETON);
-        binder.bind(ExampleConnectorId.class).toInstance(new ExampleConnectorId(connectorId));
+        binder.bind(SaphanaConnectorId.class).toInstance(new SaphanaConnectorId(connectorId));
         binder.bind(ExampleMetadata.class).in(Scopes.SINGLETON);
         binder.bind(ExampleSplitManager.class).in(Scopes.SINGLETON);
         binder.bind(ExampleRecordSetProvider.class).in(Scopes.SINGLETON);

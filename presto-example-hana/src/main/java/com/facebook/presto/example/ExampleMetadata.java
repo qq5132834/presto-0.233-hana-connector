@@ -49,7 +49,7 @@ public class ExampleMetadata
     private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleMetadata(ExampleConnectorId connectorId, SaphanaClient saphanaClient)
+    public ExampleMetadata(SaphanaConnectorId connectorId, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");
