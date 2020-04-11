@@ -26,7 +26,7 @@ import java.util.Map;
 import static com.google.common.base.Throwables.throwIfUnchecked;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleConnectorFactory
+public class SaphanaConnectorFactory
         implements ConnectorFactory
 {
     @Override

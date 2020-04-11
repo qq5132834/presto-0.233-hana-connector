@@ -23,6 +23,6 @@ public class ExamplePlugin
     @Override
     public Iterable<ConnectorFactory> getConnectorFactories()
     {
-        return ImmutableList.of(new ExampleConnectorFactory());
+        return ImmutableList.of(new SaphanaConnectorFactory());
     }
 }
