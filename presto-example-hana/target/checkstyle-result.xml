@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.16">
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaClient.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumn.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnHandle.java">
+</file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConfig.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnector.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorFactory.java">
 </file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorId.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaDemo.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaHandleResolver.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaMetadata.java">
+</file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaModule.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaPlugin.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordCursor.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordSet.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordSetProvider.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaSplit.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaSplitManager.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTable.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTableHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTableLayoutHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTransactionHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/ExampleHttpServer.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/MetadataUtil.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestDemo.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleClient.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleColumnHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleConfig.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleMetadata.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleRecordSet.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleRecordSetProvider.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleSaphana.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleSplit.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleTable.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleTableHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestSaphanaColumn.java">
 </file>
 </checkstyle>

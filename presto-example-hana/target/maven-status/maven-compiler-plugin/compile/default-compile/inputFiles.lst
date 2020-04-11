@@ -1,17 +1,15 @@
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTableLayoutHandle.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaSplitManager.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordSetProvider.java
-/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleModule.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaMetadata.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaClient.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaDemo.java
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaModule.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorFactory.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTableHandle.java
-/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExamplePlugin.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnHandle.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTable.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordSet.java
-/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleConfig.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorId.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumn.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnector.java
@@ -19,3 +17,5 @@
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaTransactionHandle.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaHandleResolver.java
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaRecordCursor.java
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaPlugin.java
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConfig.java
