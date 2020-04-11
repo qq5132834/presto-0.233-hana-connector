@@ -7,7 +7,6 @@ com/facebook/presto/example/ExampleRecordSetProvider.class
 com/facebook/presto/example/ExampleConnectorId.class
 com/facebook/presto/example/ExampleConnector.class
 com/facebook/presto/example/ExampleModule$TypeDeserializer.class
-com/facebook/presto/example/ExampleColumnHandle.class
 com/facebook/presto/example/SaphanaRecordCursor.class
 com/facebook/presto/example/ExampleModule.class
 com/facebook/presto/example/ExampleTransactionHandle.class

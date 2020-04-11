@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.16">
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleConfig.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleHandleResolver.java">
+</file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleModule.java">
 </file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleSplitManager.java">
+<file name="/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/ExampleRecordSetProvider.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/MetadataUtil.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleClient.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleColumnHandle.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleMetadata.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleTable.java">
 </file>
 </checkstyle>

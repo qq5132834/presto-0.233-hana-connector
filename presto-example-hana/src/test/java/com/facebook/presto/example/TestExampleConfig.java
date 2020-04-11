@@ -22,23 +22,23 @@ import java.util.Map;
 
 public class TestExampleConfig
 {
-    @Test
-    public void testDefaults()
-    {
-        ConfigAssertions.assertRecordedDefaults(ConfigAssertions.recordDefaults(ExampleConfig.class)
-                .setMetadata(null));
-    }
-
-    @Test
-    public void testExplicitPropertyMappings()
-    {
-        Map<String, String> properties = new ImmutableMap.Builder<String, String>()
-                .put("metadata-uri", "file://test.json")
-                .build();
-
-        ExampleConfig expected = new ExampleConfig()
-                .setMetadata(URI.create("file://test.json"));
-
-        ConfigAssertions.assertFullMapping(properties, expected);
-    }
+//    @Test
+//    public void testDefaults()
+//    {
+//        ConfigAssertions.assertRecordedDefaults(ConfigAssertions.recordDefaults(ExampleConfig.class)
+//                .setMetadata(null));
+//    }
+//
+//    @Test
+//    public void testExplicitPropertyMappings()
+//    {
+//        Map<String, String> properties = new ImmutableMap.Builder<String, String>()
+//                .put("metadata-uri", "file://test.json")
+//                .build();
+//
+//        ExampleConfig expected = new ExampleConfig()
+//                .setMetadata(URI.create("file://test.json"));
+//
+//        ConfigAssertions.assertFullMapping(properties, expected);
+//    }
 }

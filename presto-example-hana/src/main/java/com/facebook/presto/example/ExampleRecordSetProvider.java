@@ -48,18 +48,7 @@ public class ExampleRecordSetProvider
                                   List<? extends ColumnHandle> columns)
     {
         logger.info("getRecordSet");
-        {
-//            requireNonNull(split, "partitionChunk is null");
-//            ExampleSplit exampleSplit = (ExampleSplit) split;
-//            checkArgument(exampleSplit.getConnectorId().equals(connectorId), "split is not for this connector");
-//
-//            ImmutableList.Builder<ExampleColumnHandle> handles = ImmutableList.builder();
-//            for (ColumnHandle handle : columns) {
-//                handles.add((ExampleColumnHandle) handle);
-//            }
-//
-//            return new ExampleRecordSet(exampleSplit, handles.build());
-        }
+
         {
             requireNonNull(split, "partitionChunk is null");
             SaphanaSplit saphanaSplit = (SaphanaSplit) split;

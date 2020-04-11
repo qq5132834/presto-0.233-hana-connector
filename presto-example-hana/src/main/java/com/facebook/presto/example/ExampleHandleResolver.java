@@ -40,7 +40,6 @@ public class ExampleHandleResolver
     @Override
     public Class<? extends ColumnHandle> getColumnHandleClass()
     {
-        //return ExampleColumnHandle.class;
         return SaphanaColumnHandle.class;
     }
 
