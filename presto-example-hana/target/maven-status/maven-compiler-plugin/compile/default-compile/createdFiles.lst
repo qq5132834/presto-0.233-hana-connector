@@ -13,7 +13,6 @@ com/facebook/presto/example/ExampleModule.class
 com/facebook/presto/example/ExampleTransactionHandle.class
 com/facebook/presto/example/ExamplePlugin.class
 com/facebook/presto/example/SaphanaTableHandle.class
-com/facebook/presto/example/ExampleClient.class
 com/facebook/presto/example/SaphanaColumnHandle.class
 com/facebook/presto/example/SaphanaConnectorFactory.class
 com/facebook/presto/example/SaphanaRecordSet.class

@@ -50,7 +50,6 @@ public class ExampleModule
         binder.bind(ExampleConnector.class).in(Scopes.SINGLETON);
         binder.bind(ExampleConnectorId.class).toInstance(new ExampleConnectorId(connectorId));
         binder.bind(ExampleMetadata.class).in(Scopes.SINGLETON);
-        binder.bind(ExampleClient.class).in(Scopes.SINGLETON);
         binder.bind(ExampleSplitManager.class).in(Scopes.SINGLETON);
         binder.bind(ExampleRecordSetProvider.class).in(Scopes.SINGLETON);
 
@@ -59,7 +58,7 @@ public class ExampleModule
         configBinder(binder).bindConfig(ExampleConfig.class);
 
         jsonBinder(binder).addDeserializerBinding(Type.class).to(TypeDeserializer.class);
-        //jsonCodecBinder(binder).bindMapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
+
         jsonCodecBinder(binder).bindMapJsonCodec(String.class, listJsonCodec(SaphanaTable.class));
     }
 

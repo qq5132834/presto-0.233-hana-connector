@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
 import java.net.URL;
 import java.util.Optional;
 
-import static com.facebook.presto.example.MetadataUtil.CATALOG_CODEC;
+//import static com.facebook.presto.example.MetadataUtil.CATALOG_CODEC;
 import static com.facebook.presto.spi.type.BigintType.BIGINT;
 import static com.facebook.presto.spi.type.VarcharType.createUnboundedVarcharType;
 import static com.facebook.presto.testing.TestingConnectorSession.SESSION;

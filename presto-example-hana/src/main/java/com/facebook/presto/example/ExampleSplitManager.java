@@ -37,14 +37,12 @@ public class ExampleSplitManager
 {
     private static final Logger log = Logger.get(ExampleSplitManager.class);
     private final String connectorId;
-    private final ExampleClient exampleClient;
     private final SaphanaClient saphanaClient;
 
     @Inject
-    public ExampleSplitManager(ExampleConnectorId connectorId, ExampleClient exampleClient, SaphanaClient saphanaClient)
+    public ExampleSplitManager(ExampleConnectorId connectorId, SaphanaClient saphanaClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
-        this.exampleClient = requireNonNull(exampleClient, "client is null");
         this.saphanaClient = requireNonNull(saphanaClient, "saphana client is null");
     }
 

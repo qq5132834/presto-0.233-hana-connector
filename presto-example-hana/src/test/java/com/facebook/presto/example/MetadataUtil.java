@@ -35,46 +35,46 @@ import static java.util.Locale.ENGLISH;
 
 public final class MetadataUtil
 {
-    private MetadataUtil()
-    {
-    }
-
-    public static final JsonCodec<Map<String, List<ExampleTable>>> CATALOG_CODEC;
-    public static final JsonCodec<ExampleTable> TABLE_CODEC;
-    public static final JsonCodec<ExampleColumnHandle> COLUMN_CODEC;
-
-    static {
-        ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider();
-        objectMapperProvider.setJsonDeserializers(ImmutableMap.of(Type.class, new TestingTypeDeserializer()));
-        JsonCodecFactory codecFactory = new JsonCodecFactory(objectMapperProvider);
-        CATALOG_CODEC = codecFactory.mapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
-        TABLE_CODEC = codecFactory.jsonCodec(ExampleTable.class);
-        COLUMN_CODEC = codecFactory.jsonCodec(ExampleColumnHandle.class);
-    }
-
-    public static final class TestingTypeDeserializer
-            extends FromStringDeserializer<Type>
-    {
-        private final Map<String, Type> types = ImmutableMap.of(
-                StandardTypes.BOOLEAN, BOOLEAN,
-                StandardTypes.BIGINT, BIGINT,
-                StandardTypes.INTEGER, INTEGER,
-                StandardTypes.DOUBLE, DOUBLE,
-                StandardTypes.VARCHAR, createUnboundedVarcharType());
-
-        public TestingTypeDeserializer()
-        {
-            super(Type.class);
-        }
-
-        @Override
-        protected Type _deserialize(String value, DeserializationContext context)
-        {
-            Type type = types.get(value.toLowerCase(ENGLISH));
-            if (type == null) {
-                throw new IllegalArgumentException(String.valueOf("Unknown type " + value));
-            }
-            return type;
-        }
-    }
+//    private MetadataUtil()
+//    {
+//    }
+//
+//    public static final JsonCodec<Map<String, List<ExampleTable>>> CATALOG_CODEC;
+//    public static final JsonCodec<ExampleTable> TABLE_CODEC;
+//    public static final JsonCodec<ExampleColumnHandle> COLUMN_CODEC;
+//
+//    static {
+//        ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider();
+//        objectMapperProvider.setJsonDeserializers(ImmutableMap.of(Type.class, new TestingTypeDeserializer()));
+//        JsonCodecFactory codecFactory = new JsonCodecFactory(objectMapperProvider);
+//        CATALOG_CODEC = codecFactory.mapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
+//        TABLE_CODEC = codecFactory.jsonCodec(ExampleTable.class);
+//        COLUMN_CODEC = codecFactory.jsonCodec(ExampleColumnHandle.class);
+//    }
+//
+//    public static final class TestingTypeDeserializer
+//            extends FromStringDeserializer<Type>
+//    {
+//        private final Map<String, Type> types = ImmutableMap.of(
+//                StandardTypes.BOOLEAN, BOOLEAN,
+//                StandardTypes.BIGINT, BIGINT,
+//                StandardTypes.INTEGER, INTEGER,
+//                StandardTypes.DOUBLE, DOUBLE,
+//                StandardTypes.VARCHAR, createUnboundedVarcharType());
+//
+//        public TestingTypeDeserializer()
+//        {
+//            super(Type.class);
+//        }
+//
+//        @Override
+//        protected Type _deserialize(String value, DeserializationContext context)
+//        {
+//            Type type = types.get(value.toLowerCase(ENGLISH));
+//            if (type == null) {
+//                throw new IllegalArgumentException(String.valueOf("Unknown type " + value));
+//            }
+//            return type;
+//        }
+//    }
 }
