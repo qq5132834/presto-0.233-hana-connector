@@ -1,0 +1,3 @@
+com/facebook/presto/plugin/postgresql/PostgreSqlClient.class
+com/facebook/presto/plugin/postgresql/PostgreSqlClientModule.class
+com/facebook/presto/plugin/postgresql/PostgreSqlPlugin.class

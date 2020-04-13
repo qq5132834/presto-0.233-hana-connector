@@ -1,0 +1,6 @@
+com/facebook/presto/plugin/postgresql/TestPostgreSqlIntegrationSmokeTest.class
+com/facebook/presto/plugin/postgresql/TestPostgreSqlPlugin.class
+com/facebook/presto/plugin/postgresql/TestPostgreSqlTypeMapping.class
+com/facebook/presto/plugin/postgresql/PostgreSqlQueryRunner.class
+com/facebook/presto/plugin/postgresql/TestPostgreSqlDistributedQueries.class
+com/facebook/presto/plugin/postgresql/TestPostgreSqlCaseInsensitiveMapping.class

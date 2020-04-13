@@ -10,7 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="presto-base-jdbc" />
+    <orderEntry type="library" name="Maven: com.facebook.presto:presto-base-jdbc:0.233" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:bootstrap:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:log:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:concurrent:0.190" level="project" />

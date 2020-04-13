@@ -85,8 +85,11 @@
         <module>presto-example-hana</module>
         <module>presto-mysql</module>
         <module>presto-cassandra</module>
+        <!--
         <module>presto-base-jdbc</module>
+        -->
         <module>presto-postgresql</module>
+        <module>presto-saphana</module>
     </modules>
 
     <dependencyManagement>
