@@ -34,8 +34,6 @@ public class HanaConfig
         return connectionUrl;
     }
 
-
-
     @Override
     public String getConnectionUser() {
         String user = super.getConnectionUser();

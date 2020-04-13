@@ -19,13 +19,12 @@ import com.facebook.presto.spi.type.Type;
 
 public class HanaColumn
 {
-    private String tableName;       //表名
-    private String columnName;      //字段名称
-    private Integer dataType;       //
-    private String typeName;        //字段数据类型
-    private Integer columnSize;     //字段大小
-
-    private Type type;              //类型
+    private String tableName;
+    private String columnName;
+    private Integer dataType;
+    private String typeName;
+    private Integer columnSize;
+    private Type type;
 
     public HanaColumn(){}
 

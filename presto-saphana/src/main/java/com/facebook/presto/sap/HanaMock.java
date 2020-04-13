@@ -13,10 +13,6 @@
  */
 package com.facebook.presto.sap;
 
-import com.alibaba.fastjson.JSONObject;
-import com.facebook.airlift.log.Logger;
-
-import javax.inject.Inject;
 import java.sql.*;
 import java.util.*;
 
@@ -24,29 +20,26 @@ import static java.util.Objects.requireNonNull;
 
 public class HanaMock
 {
-    private static final Logger log = Logger.get(HanaMock.class);
     private static final String SCHEMA = "sics_pod_schema";
     private static final String DRIVER = "com.sap.db.jdbc.Driver";
     private static final String URL = "jdbc:sap://192.168.152.171:39015?currentschema="+SCHEMA;
     private static final String USER = "SYSTEM";
     private static final String PASSWORD = "sicsPoD2020";
 
-    private static Map<String, List<String>> schemaTables = new HashMap<>();         //schema与table list关系
-    private static Map<String, List<HanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
-
+    private static Map<String, List<String>> schemaTables = new HashMap<>();
+    private static Map<String, List<HanaColumn>> tableColumns = new HashMap<>();
 
     public static String getSCHEMA(){
         return SCHEMA;
     }
 
     static {
-        //初始化表
+
         List<String> tables = new ArrayList<>();
         tables.add("user");
         tables.add("company");
         schemaTables.put("sics_pod_schema", tables);
 
-        //初始化字段
         List<HanaColumn> columns1 = new ArrayList<>();
         columns1.add(new HanaColumn("user", "name", "VARCHAR", 20));
         columns1.add(new HanaColumn("user", "age", "BIGINT", 10));
@@ -58,41 +51,19 @@ public class HanaMock
         tableColumns.put("company", columns2);
     }
 
-    @Inject
-    public HanaMock(){
-
-    }
-
-    /***
-     *
-     *
-     * @param schemaName
-     * @param tableName
-     * @return SaphanaTable
-     */
     public HanaTable getTable(String schemaName, String tableName)
     {
-        log.info("getTable.schemaName:" + schemaName + ",tableName:" + tableName);
-        log.info("schemaTables:" + JSONObject.toJSONString(schemaTables));
-        //log.info("tableColumns:" + JSONObject.toJSONString(tableColumns));
         requireNonNull(schemaName, "schemaName is null");
         requireNonNull(tableName, "tableName is null");
         List<String> tables = schemaTables.get(schemaName);
-        log.info("tabls:" + JSONObject.toJSONString(tables));
         if(tables!=null && tables.contains(tableName)){
-            //如果schema与table存在
             HanaTable saphanaTable = new HanaTable(tableName, tableColumns.get(tableName));
             return saphanaTable;
         }
         return null;
     }
 
-    /***
-     * 获取某张表下的字段属性
-     * @param tableName
-     * @return
-     * @throws Exception
-     */
+
     public List<HanaColumn> getTableColumn(String tableName) throws Exception{
 
         if(tableColumns.get(tableName)!=null){
@@ -124,18 +95,11 @@ public class HanaMock
 
         tableColumns.put(tableName.toUpperCase(), columns);
 
-        log.info("getTableColumn.tableName:" + tableName + ",columns:" + JSONObject.toJSONString(columns));
         return columns;
     }
 
-    /***
-     * 获取hana中schema下的表
-     * @param schema
-     * @return
-     */
     public List<String> getTables(String schema){
 
-        //判断缓存中是否存在
         if(schemaTables.get(schema) != null){
             return schemaTables.get(schema);
         }
@@ -145,21 +109,16 @@ public class HanaMock
             Connection con = this.getConnection();
             DatabaseMetaData databaseMetaData = con.getMetaData();
             ResultSet rs = databaseMetaData.getTables(null, schema.toUpperCase(), null, new String[]{"TABLE"});
-            log.info("schema:" + schema.toUpperCase());
             while (rs.next()){
-
                 String tableName = rs.getString("TABLE_NAME");
-                log.info(tableName);
                 list.add(tableName);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        //缓存起来
         schemaTables.put(schema.toUpperCase(),list);
 
-        log.info("getTables:" + JSONObject.toJSONString(list));
         return list;
     }
 

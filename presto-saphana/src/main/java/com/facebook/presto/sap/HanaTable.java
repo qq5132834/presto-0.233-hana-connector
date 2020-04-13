@@ -21,15 +21,8 @@ import java.util.List;
 
 public class HanaTable
 {
-    private static final Logger log = Logger.get(HanaTable.class);
-
-    //表名
     private String tableName;
-
-    //表字段列表
     private List<HanaColumn> hanaColumns;
-
-    //表字段源数据
     private List<ColumnMetadata> columnsMetadata;
 
     private HanaTable(){}
@@ -43,10 +36,6 @@ public class HanaTable
             columnsMetadata.add(new ColumnMetadata(column.getColumnName(), column.getType()));
         }
         this.columnsMetadata = columnsMetadata;
-    }
-
-    public static Logger getLog() {
-        return log;
     }
 
     public String getTableName() {
