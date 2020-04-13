@@ -16,11 +16,12 @@
     </properties>
 
     <dependencies>
+        <!--
         <dependency>
             <groupId>com.facebook.presto</groupId>
             <artifactId>presto-base-jdbc</artifactId>
         </dependency>
-
+        -->
         <dependency>
             <groupId>com.facebook.airlift</groupId>
             <artifactId>bootstrap</artifactId>
@@ -134,6 +135,7 @@
             <version>1.2.54</version>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>com.sap</groupId>
             <artifactId>saphana-jdbc</artifactId>
@@ -141,9 +143,11 @@
             <scope>system</scope>
             <systemPath>/Volumes/D/github/hana/presto-example-hana/libs/saphana-jdbc-1.1.0.jar</systemPath>
         </dependency>
+        -->
 
     </dependencies>
 
+    <!--
     <build>
         <plugins>
             <plugin>
@@ -155,6 +159,7 @@
             </plugin>
         </plugins>
     </build>
+    -->
 
 
 </project>
