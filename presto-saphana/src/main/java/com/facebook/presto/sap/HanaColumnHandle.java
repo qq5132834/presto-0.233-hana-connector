@@ -24,7 +24,7 @@ import java.util.Objects;
 import static com.google.common.base.MoreObjects.toStringHelper;
 import static java.util.Objects.requireNonNull;
 
-public class SaphanaColumnHandle
+public class HanaColumnHandle
         implements ColumnHandle
 {
     private final String connectorId;
@@ -33,7 +33,7 @@ public class SaphanaColumnHandle
     private final int ordinalPosition;
 
     @JsonCreator
-    public SaphanaColumnHandle(
+    public HanaColumnHandle(
             @JsonProperty("connectorId") String connectorId,
             @JsonProperty("columnName") String columnName,
             @JsonProperty("columnType") Type columnType,
@@ -90,7 +90,7 @@ public class SaphanaColumnHandle
             return false;
         }
 
-        SaphanaColumnHandle other = (SaphanaColumnHandle) obj;
+        HanaColumnHandle other = (HanaColumnHandle) obj;
         return Objects.equals(this.connectorId, other.connectorId) &&
                 Objects.equals(this.columnName, other.columnName);
     }

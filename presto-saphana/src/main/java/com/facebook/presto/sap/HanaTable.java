@@ -19,27 +19,27 @@ import com.facebook.presto.spi.ColumnMetadata;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaphanaTable
+public class HanaTable
 {
-    private static final Logger log = Logger.get(SaphanaTable.class);
+    private static final Logger log = Logger.get(HanaTable.class);
 
     //表名
     private String tableName;
 
     //表字段列表
-    private List<SaphanaColumn> saphanaColumns;
+    private List<HanaColumn> hanaColumns;
 
     //表字段源数据
     private List<ColumnMetadata> columnsMetadata;
 
-    private SaphanaTable(){}
+    private HanaTable(){}
 
-    public SaphanaTable(String tableName, List<SaphanaColumn> saphanaColumns){
+    public HanaTable(String tableName, List<HanaColumn> hanaColumns){
         this.tableName = tableName;
-        this.saphanaColumns = saphanaColumns;
+        this.hanaColumns = hanaColumns;
 
         List<ColumnMetadata> columnsMetadata = new ArrayList<>();
-        for (SaphanaColumn column : this.saphanaColumns) {
+        for (HanaColumn column : this.hanaColumns) {
             columnsMetadata.add(new ColumnMetadata(column.getColumnName(), column.getType()));
         }
         this.columnsMetadata = columnsMetadata;
@@ -53,8 +53,8 @@ public class SaphanaTable
         return tableName;
     }
 
-    public List<SaphanaColumn> getSaphanaColumns() {
-        return saphanaColumns;
+    public List<HanaColumn> getHanaColumns() {
+        return hanaColumns;
     }
 
     public List<ColumnMetadata> getColumnsMetadata() {

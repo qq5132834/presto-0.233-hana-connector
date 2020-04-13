@@ -17,7 +17,7 @@ import com.facebook.presto.spi.type.BigintType;
 import com.facebook.presto.spi.type.VarcharType;
 import com.facebook.presto.spi.type.Type;
 
-public class SaphanaColumn
+public class HanaColumn
 {
     private String tableName;       //表名
     private String columnName;      //字段名称
@@ -27,9 +27,9 @@ public class SaphanaColumn
 
     private Type type;              //类型
 
-    public SaphanaColumn(){}
+    public HanaColumn(){}
 
-    public SaphanaColumn(String tableName, String columnName, String typeName, Integer columnSize){
+    public HanaColumn(String tableName, String columnName, String typeName, Integer columnSize){
         this.tableName = tableName;
         this.columnName = columnName;
         this.typeName = typeName;

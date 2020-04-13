@@ -32,7 +32,7 @@ public class HanaMock
     private static final String PASSWORD = "sicsPoD2020";
 
     private static Map<String, List<String>> schemaTables = new HashMap<>();         //schema与table list关系
-    private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
+    private static Map<String, List<HanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
 
 
     public static String getSCHEMA(){
@@ -47,14 +47,14 @@ public class HanaMock
         schemaTables.put("sics_pod_schema", tables);
 
         //初始化字段
-        List<SaphanaColumn> columns1 = new ArrayList<>();
-        columns1.add(new SaphanaColumn("user", "name", "VARCHAR", 20));
-        columns1.add(new SaphanaColumn("user", "age", "BIGINT", 10));
+        List<HanaColumn> columns1 = new ArrayList<>();
+        columns1.add(new HanaColumn("user", "name", "VARCHAR", 20));
+        columns1.add(new HanaColumn("user", "age", "BIGINT", 10));
         tableColumns.put("user", columns1);
 
-        List<SaphanaColumn> columns2 = new ArrayList<>();
-        columns2.add(new SaphanaColumn("company", "text", "VARCHAR", 20));
-        columns2.add(new SaphanaColumn("company", "value", "BIGINT", 10));
+        List<HanaColumn> columns2 = new ArrayList<>();
+        columns2.add(new HanaColumn("company", "text", "VARCHAR", 20));
+        columns2.add(new HanaColumn("company", "value", "BIGINT", 10));
         tableColumns.put("company", columns2);
     }
 
@@ -70,7 +70,7 @@ public class HanaMock
      * @param tableName
      * @return SaphanaTable
      */
-    public SaphanaTable getTable(String schemaName, String tableName)
+    public HanaTable getTable(String schemaName, String tableName)
     {
         log.info("getTable.schemaName:" + schemaName + ",tableName:" + tableName);
         log.info("schemaTables:" + JSONObject.toJSONString(schemaTables));
@@ -81,7 +81,7 @@ public class HanaMock
         log.info("tabls:" + JSONObject.toJSONString(tables));
         if(tables!=null && tables.contains(tableName)){
             //如果schema与table存在
-            SaphanaTable saphanaTable = new SaphanaTable(tableName, tableColumns.get(tableName));
+            HanaTable saphanaTable = new HanaTable(tableName, tableColumns.get(tableName));
             return saphanaTable;
         }
         return null;
@@ -93,7 +93,7 @@ public class HanaMock
      * @return
      * @throws Exception
      */
-    public List<SaphanaColumn> getTableColumn(String tableName) throws Exception{
+    public List<HanaColumn> getTableColumn(String tableName) throws Exception{
 
         if(tableColumns.get(tableName)!=null){
             return tableColumns.get(tableName);
@@ -102,7 +102,7 @@ public class HanaMock
         Connection con = this.getConnection();
         DatabaseMetaData databaseMetaData = con.getMetaData();
         ResultSet rs = databaseMetaData.getColumns(null, null, tableName.toUpperCase(), null);
-        List<SaphanaColumn> columns = null;
+        List<HanaColumn> columns = null;
         while(rs.next()) {
             if(columns==null){
                 columns = new ArrayList<>();
@@ -112,13 +112,13 @@ public class HanaMock
             String typeName = rs.getString("TYPE_NAME");
             int columnSize = rs.getInt("COLUMN_SIZE");
 
-            SaphanaColumn saphanaColumn = new SaphanaColumn();
-            saphanaColumn.setTableName(tableName);
-            saphanaColumn.setColumnName(columnName);
-            saphanaColumn.setTypeName(typeName);
-            saphanaColumn.setColumnSize(columnSize);
+            HanaColumn hanaColumn = new HanaColumn();
+            hanaColumn.setTableName(tableName);
+            hanaColumn.setColumnName(columnName);
+            hanaColumn.setTypeName(typeName);
+            hanaColumn.setColumnSize(columnSize);
 
-            columns.add(saphanaColumn);
+            columns.add(hanaColumn);
         }
         closeConnection(con, null);
 

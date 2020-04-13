@@ -26,15 +26,15 @@ import javax.inject.Inject;
 
 import static java.util.Objects.requireNonNull;
 
-public class SaphanaConnector
+public class HanaConnector
         implements Connector
 {
-    private static final Logger log = Logger.get(SaphanaConnector.class);
+    private static final Logger log = Logger.get(HanaConnector.class);
 
     private final LifeCycleManager lifeCycleManager;
 
     @Inject
-    public SaphanaConnector(
+    public HanaConnector(
             LifeCycleManager lifeCycleManager)
     {
         this.lifeCycleManager = requireNonNull(lifeCycleManager, "lifeCycleManager is null");

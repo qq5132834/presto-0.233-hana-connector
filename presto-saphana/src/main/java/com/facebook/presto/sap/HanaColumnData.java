@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SaphanaColumnData {
+public class HanaColumnData {
 
     private final List<List<Object>> datas;
 
@@ -26,29 +26,29 @@ public class SaphanaColumnData {
         return datas;
     }
 
-    public SaphanaColumnData(){
+    public HanaColumnData(){
         this.datas = new ArrayList<>();
     }
 
-    public SaphanaColumnData insert(List<Object> row){
+    public HanaColumnData insert(List<Object> row){
         datas.add(row);
         return this;
     }
 
     ////////////////////////////////////MOCK数据/////////////////////////////
-    public static Map<String, SaphanaColumnData> tableData = new HashMap<>();
+    public static Map<String, HanaColumnData> tableData = new HashMap<>();
 
     static {
 
         List<Object> row1 = new ArrayList<>();  row1.add("huangliao"); row1.add(39);
         List<Object> row2 = new ArrayList<>();  row2.add("xubo"); row2.add(49);
         List<Object> row3 = new ArrayList<>();  row3.add("xunjianneng"); row3.add(59);
-        tableData.put("user", new SaphanaColumnData().insert(row1).insert(row2).insert(row3));
+        tableData.put("user", new HanaColumnData().insert(row1).insert(row2).insert(row3));
 
         List<Object> row4 = new ArrayList<>();  row4.add("pingan"); row4.add(81);
         List<Object> row5 = new ArrayList<>();  row5.add("gree"); row5.add(82);
         List<Object> row6 = new ArrayList<>();  row6.add("sics"); row6.add(83);
-        tableData.put("company", new SaphanaColumnData().insert(row4).insert(row5).insert(row5));
+        tableData.put("company", new HanaColumnData().insert(row4).insert(row5).insert(row5));
 
     }
 
