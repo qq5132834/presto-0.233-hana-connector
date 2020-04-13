@@ -74,4 +74,34 @@
 </file>
 <file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestSaphanaColumnData.java">
 </file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/ExampleHttpServer.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/MetadataUtil.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestDemo.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleClient.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleColumnHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleConfig.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleMetadata.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleRecordSet.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleRecordSetProvider.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleSaphana.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleSplit.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleTable.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleTableHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestSaphanaColumn.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestSaphanaColumnData.java">
+</file>
 </checkstyle>
