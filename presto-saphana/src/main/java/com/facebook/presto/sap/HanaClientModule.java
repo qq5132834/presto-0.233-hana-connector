@@ -37,7 +37,7 @@ public class HanaClientModule
     public void configure(Binder binder)
     {
         binder.bind(JdbcClient.class).to(HanaClient.class).in(Scopes.SINGLETON);
-        configBinder(binder).bindConfig(BaseJdbcConfig.class);
+        configBinder(binder).bindConfig(HanaConfig.class);
         jsonBinder(binder).addDeserializerBinding(Type.class).to(HanaClientModule.TypeDeserializer.class);
     }
 

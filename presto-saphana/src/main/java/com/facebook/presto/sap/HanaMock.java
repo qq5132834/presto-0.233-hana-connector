@@ -22,9 +22,9 @@ import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
-public class SaphanaClient
+public class HanaMock
 {
-    private static final Logger log = Logger.get(SaphanaClient.class);
+    private static final Logger log = Logger.get(HanaMock.class);
     private static final String SCHEMA = "sics_pod_schema";
     private static final String DRIVER = "com.sap.db.jdbc.Driver";
     private static final String URL = "jdbc:sap://192.168.152.171:39015?currentschema="+SCHEMA;
@@ -59,7 +59,7 @@ public class SaphanaClient
     }
 
     @Inject
-    public SaphanaClient(){
+    public HanaMock(){
 
     }
 
