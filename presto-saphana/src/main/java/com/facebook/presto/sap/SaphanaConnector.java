@@ -24,7 +24,6 @@ import com.facebook.presto.spi.transaction.IsolationLevel;
 
 import javax.inject.Inject;
 
-import static com.facebook.presto.sap.SaphanaTransactionHandle.INSTANCE;
 import static java.util.Objects.requireNonNull;
 
 public class SaphanaConnector
@@ -33,8 +32,6 @@ public class SaphanaConnector
     private static final Logger log = Logger.get(SaphanaConnector.class);
 
     private final LifeCycleManager lifeCycleManager;
-//    private final SaphanaMetadata metadata;
-//    private final SaphanaSplitManager splitManager;
 
     @Inject
     public SaphanaConnector(
@@ -46,7 +43,7 @@ public class SaphanaConnector
     @Override
     public ConnectorTransactionHandle beginTransaction(IsolationLevel isolationLevel, boolean readOnly)
     {
-        return INSTANCE;
+        return null;
     }
 
     @Override
