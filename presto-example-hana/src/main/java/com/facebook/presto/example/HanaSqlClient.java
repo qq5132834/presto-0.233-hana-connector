@@ -19,7 +19,6 @@ import com.facebook.presto.spi.ConnectorTableMetadata;
 import com.facebook.presto.spi.PrestoException;
 import com.facebook.presto.spi.SchemaTableName;
 import com.facebook.presto.spi.type.Type;
-//import org.postgresql.Driver;
 import com.sap.db.jdbc.Driver;
 
 import javax.inject.Inject;
@@ -31,13 +30,13 @@ import static com.facebook.presto.spi.StandardErrorCode.ALREADY_EXISTS;
 import static com.facebook.presto.spi.type.VarbinaryType.VARBINARY;
 import static java.lang.String.format;
 
-public class PostgreSqlClient
+public class HanaSqlClient
         extends BaseJdbcClient
 {
     private static final String DUPLICATE_TABLE_SQLSTATE = "42P07";
 
     @Inject
-    public PostgreSqlClient(JdbcConnectorId connectorId, BaseJdbcConfig config)
+    public HanaSqlClient(JdbcConnectorId connectorId, BaseJdbcConfig config)
     {
         super(connectorId, config, "\"", new DriverConnectionFactory(new Driver(), config));
     }

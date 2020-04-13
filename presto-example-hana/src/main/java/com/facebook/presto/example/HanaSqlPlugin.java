@@ -13,21 +13,13 @@
  */
 package com.facebook.presto.example;
 
-import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
-import com.facebook.presto.plugin.jdbc.JdbcClient;
-import com.google.inject.Binder;
-import com.google.inject.Module;
-import com.google.inject.Scopes;
+import com.facebook.presto.plugin.jdbc.JdbcPlugin;
 
-import static com.facebook.airlift.configuration.ConfigBinder.configBinder;
-
-public class PostgreSqlClientModule
-        implements Module
+public class HanaSqlPlugin
+        extends JdbcPlugin
 {
-    @Override
-    public void configure(Binder binder)
+    public HanaSqlPlugin()
     {
-        binder.bind(JdbcClient.class).to(PostgreSqlClient.class).in(Scopes.SINGLETON);
-        configBinder(binder).bindConfig(BaseJdbcConfig.class);
+        super("example-hana", new HanaSqlClientModule());
     }
 }
