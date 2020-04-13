@@ -15,8 +15,8 @@ package com.facebook.presto.sap;
 
 import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
 import com.facebook.presto.plugin.jdbc.JdbcClient;
-import com.facebook.presto.spi.type.Type;
-import com.facebook.presto.spi.type.TypeManager;
+import com.facebook.presto.spi.function.OperatorType;
+import com.facebook.presto.spi.type.*;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.google.inject.Binder;
@@ -24,6 +24,11 @@ import com.google.inject.Module;
 import com.google.inject.Scopes;
 
 import javax.inject.Inject;
+
+import java.lang.invoke.MethodHandle;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import static com.facebook.airlift.configuration.ConfigBinder.configBinder;
 import static com.facebook.airlift.json.JsonBinder.jsonBinder;
@@ -37,7 +42,7 @@ public class HanaClientModule
     public void configure(Binder binder)
     {
         binder.bind(JdbcClient.class).to(HanaClient.class).in(Scopes.SINGLETON);
-        configBinder(binder).bindConfig(HanaConfig.class);
+        configBinder(binder).bindConfig(BaseJdbcConfig.class);
         jsonBinder(binder).addDeserializerBinding(Type.class).to(HanaClientModule.TypeDeserializer.class);
     }
 
@@ -46,11 +51,55 @@ public class HanaClientModule
     {
         private final TypeManager typeManager;
 
-        @Inject
-        public TypeDeserializer(TypeManager typeManager)
+        public TypeDeserializer()
         {
             super(Type.class);
-            this.typeManager = requireNonNull(typeManager, "typeManager is null");
+            this.typeManager = new TypeManager() {
+                @Override
+                public Type getType(TypeSignature signature) {
+                    return null;
+                }
+
+                @Override
+                public Type getParameterizedType(String baseTypeName, List<TypeSignatureParameter> typeParameters) {
+                    return null;
+                }
+
+                @Override
+                public List<Type> getTypes() {
+                    return null;
+                }
+
+                @Override
+                public Collection<ParametricType> getParametricTypes() {
+                    return null;
+                }
+
+                @Override
+                public Optional<Type> getCommonSuperType(Type firstType, Type secondType) {
+                    return Optional.empty();
+                }
+
+                @Override
+                public boolean canCoerce(Type actualType, Type expectedType) {
+                    return false;
+                }
+
+                @Override
+                public boolean isTypeOnlyCoercion(Type actualType, Type expectedType) {
+                    return false;
+                }
+
+                @Override
+                public Optional<Type> coerceTypeBase(Type sourceType, String resultTypeBase) {
+                    return Optional.empty();
+                }
+
+                @Override
+                public MethodHandle resolveOperator(OperatorType operatorType, List<? extends Type> argumentTypes) {
+                    return null;
+                }
+            };
         }
 
         @Override

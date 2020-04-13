@@ -13,6 +13,7 @@
  */
 package com.facebook.presto.sap;
 
+import com.facebook.airlift.configuration.Config;
 import com.facebook.airlift.log.Logger;
 import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
 
@@ -29,24 +30,38 @@ public class HanaConfig
 
     @Override
     public @NotNull String getConnectionUrl() {
-        String connectionUrl = super.getConnectionUrl();
-        log.info("connectionUrl:" + connectionUrl);
-        return connectionUrl;
+        return super.getConnectionUrl();
     }
 
     @Override
     public String getConnectionUser() {
-        String user = super.getConnectionUser();
-        log.info("connectionUser:" + user);
-        return user;
+        return super.getConnectionUser();
     }
 
     @Override
     public String getConnectionPassword() {
-        String pwd =  super.getConnectionPassword();
-        return pwd;
+        return super.getConnectionPassword();
     }
 
+    @Config("connection-url")
+    @Override
+    public BaseJdbcConfig setConnectionUrl(String connectionUrl) {
+        log.info("connectionUrl:" + connectionUrl);
+        return super.setConnectionUrl(connectionUrl);
+    }
 
+    @Config("connection-user")
+    @Override
+    public BaseJdbcConfig setConnectionUser(String connectionUser) {
+        log.info("connectionUser:" + connectionUser);
+        return super.setConnectionUser(connectionUser);
+    }
+
+    @Config("connection-password")
+    @Override
+    public BaseJdbcConfig setConnectionPassword(String connectionPassword) {
+        log.info("connectionPassword:" + connectionPassword);
+        return super.setConnectionPassword(connectionPassword);
+    }
 
 }
