@@ -33,21 +33,14 @@ public class SaphanaConnector
     private static final Logger log = Logger.get(SaphanaConnector.class);
 
     private final LifeCycleManager lifeCycleManager;
-    private final SaphanaMetadata metadata;
-    private final SaphanaSplitManager splitManager;
-    private final SaphanaRecordSetProvider recordSetProvider;
+//    private final SaphanaMetadata metadata;
+//    private final SaphanaSplitManager splitManager;
 
     @Inject
     public SaphanaConnector(
-            LifeCycleManager lifeCycleManager,
-            SaphanaMetadata metadata,
-            SaphanaSplitManager splitManager,
-            SaphanaRecordSetProvider recordSetProvider)
+            LifeCycleManager lifeCycleManager)
     {
         this.lifeCycleManager = requireNonNull(lifeCycleManager, "lifeCycleManager is null");
-        this.metadata = requireNonNull(metadata, "metadata is null");
-        this.splitManager = requireNonNull(splitManager, "splitManager is null");
-        this.recordSetProvider = requireNonNull(recordSetProvider, "recordSetProvider is null");
     }
 
     @Override
@@ -59,19 +52,19 @@ public class SaphanaConnector
     @Override
     public ConnectorMetadata getMetadata(ConnectorTransactionHandle transactionHandle)
     {
-        return metadata;
+        return null;
     }
 
     @Override
     public ConnectorSplitManager getSplitManager()
     {
-        return splitManager;
+        return null;
     }
 
     @Override
     public ConnectorRecordSetProvider getRecordSetProvider()
     {
-        return recordSetProvider;
+        return null;
     }
 
     @Override

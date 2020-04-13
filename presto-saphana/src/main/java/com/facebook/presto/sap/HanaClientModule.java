@@ -15,11 +15,20 @@ package com.facebook.presto.sap;
 
 import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
 import com.facebook.presto.plugin.jdbc.JdbcClient;
+import com.facebook.presto.spi.type.Type;
+import com.facebook.presto.spi.type.TypeManager;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
 
+import javax.inject.Inject;
+
 import static com.facebook.airlift.configuration.ConfigBinder.configBinder;
+import static com.facebook.airlift.json.JsonBinder.jsonBinder;
+import static com.facebook.presto.spi.type.TypeSignature.parseTypeSignature;
+import static java.util.Objects.requireNonNull;
 
 public class HanaClientModule
         implements Module
@@ -29,5 +38,25 @@ public class HanaClientModule
     {
         binder.bind(JdbcClient.class).to(HanaClient.class).in(Scopes.SINGLETON);
         configBinder(binder).bindConfig(BaseJdbcConfig.class);
+        jsonBinder(binder).addDeserializerBinding(Type.class).to(HanaClientModule.TypeDeserializer.class);
+    }
+
+    public static final class TypeDeserializer
+            extends FromStringDeserializer<Type>
+    {
+        private final TypeManager typeManager;
+
+        @Inject
+        public TypeDeserializer(TypeManager typeManager)
+        {
+            super(Type.class);
+            this.typeManager = requireNonNull(typeManager, "typeManager is null");
+        }
+
+        @Override
+        protected Type _deserialize(String value, DeserializationContext context)
+        {
+            return typeManager.getType(parseTypeSignature(value));
+        }
     }
 }
