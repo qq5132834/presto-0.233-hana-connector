@@ -4,49 +4,23 @@
 </file>
 <file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaClientModule.java">
 </file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumn.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumnData.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumnHandle.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConfig.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConnector.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConnectorId.java">
+</file>
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaMock.java">
+</file>
 <file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaPlugin.java">
 </file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaClient.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaColumn.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaColumnData.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaColumnHandle.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaConfig.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaConnector.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaConnectorFactory.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaConnectorId.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaDemo.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaHandleResolver.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaMetadata.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaModule.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaRecordCursor.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaRecordSet.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaRecordSetProvider.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaSplit.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaSplitManager.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaTable.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaTableHandle.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaTableLayoutHandle.java">
-</file>
-<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/SaphanaTransactionHandle.java">
+<file name="/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaTable.java">
 </file>
 <file name="/Volumes/D/github/hana/presto-saphana/src/test/java/com/facebook/presto/sap/TestExampleClient.java">
 </file>

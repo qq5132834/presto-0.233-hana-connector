@@ -19,7 +19,8 @@
 
         <dependency>
             <groupId>com.facebook.presto</groupId>
-            <artifactId>presto-base-jdbc</artifactId>
+            <artifactId>presto-sics-jdbc</artifactId>
+            <version>0.233</version>
         </dependency>
 
         <dependency>
@@ -135,7 +136,7 @@
             <artifactId>saphana-jdbc</artifactId>
             <version>1.1.0</version>
             <scope>system</scope>
-            <systemPath>/Volumes/D/github/hana/presto-example-hana/libs/saphana-jdbc-1.1.0.jar</systemPath>
+            <systemPath>/Volumes/D/github/hana/presto-saphana/libs/saphana-jdbc-1.1.0.jar</systemPath>
         </dependency>
 
 

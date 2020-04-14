@@ -13,26 +13,33 @@
  */
 package com.facebook.presto.sap;
 
+import com.facebook.airlift.log.Logger;
 import com.facebook.presto.plugin.jdbc.*;
 import com.facebook.presto.spi.ConnectorSession;
 import com.facebook.presto.spi.ConnectorTableMetadata;
 import com.facebook.presto.spi.PrestoException;
 import com.facebook.presto.spi.SchemaTableName;
 import com.facebook.presto.spi.type.Type;
-//import org.postgresql.Driver;
 import com.sap.db.jdbc.Driver;
 
 import javax.inject.Inject;
 import java.sql.*;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.facebook.presto.plugin.jdbc.JdbcErrorCode.JDBC_ERROR;
 import static com.facebook.presto.spi.StandardErrorCode.ALREADY_EXISTS;
 import static com.facebook.presto.spi.type.VarbinaryType.VARBINARY;
+import static com.facebook.presto.spi.type.IntegerType.INTEGER;
+import static com.facebook.presto.spi.type.VarcharType.UNBOUNDED_LENGTH;
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
+import static java.util.Locale.ENGLISH;
 
 public class HanaClient
         extends BaseJdbcClient
 {
+
+    private static final Logger log = Logger.get(HanaClient.class);
 
     @Inject
     public HanaClient(JdbcConnectorId connectorId, BaseJdbcConfig config)
@@ -44,6 +51,7 @@ public class HanaClient
     public PreparedStatement getPreparedStatement(Connection connection, String sql)
             throws SQLException
     {
+        log.info("getPreparedStatement.sql:" + sql);
         connection.setAutoCommit(false);
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setFetchSize(1000);
@@ -66,12 +74,12 @@ public class HanaClient
     @Override
     protected String toSqlType(Type type)
     {
-        if (VARBINARY.equals(type)) {
-            return "bytea";
-        }
-
-        return super.toSqlType(type);
+        log.info("toSqlType.displayName:" + type.getDisplayName() + ",simpleName:" + type.getJavaType().getSimpleName());
+        String sqlType = super.toSqlType(type);
+        log.info("sqlType:" + sqlType);
+        return sqlType;
     }
+
 
 
 }
