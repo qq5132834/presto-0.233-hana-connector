@@ -231,6 +231,13 @@ public final class StandardReadMappings
 
             case Types.TIMESTAMP:
                 return Optional.of(timestampReadMapping());
+            case Types.BLOB:
+                return Optional.of(varbinaryReadMapping());
+            case Types.NCLOB:
+                return Optional.of(varcharReadMapping(createUnboundedVarcharType()));
+            case Types.CLOB:
+                return Optional.of(varcharReadMapping(createUnboundedVarcharType()));
+
         }
         return Optional.empty();
     }
