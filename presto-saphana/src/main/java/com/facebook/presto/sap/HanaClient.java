@@ -15,10 +15,7 @@ package com.facebook.presto.sap;
 
 import com.facebook.airlift.log.Logger;
 import com.facebook.presto.plugin.jdbc.*;
-import com.facebook.presto.spi.ConnectorSession;
-import com.facebook.presto.spi.ConnectorTableMetadata;
-import com.facebook.presto.spi.PrestoException;
-import com.facebook.presto.spi.SchemaTableName;
+import com.facebook.presto.spi.*;
 import com.facebook.presto.spi.type.Type;
 import com.sap.db.jdbc.Driver;
 
@@ -29,6 +26,7 @@ import java.util.Set;
 
 import static com.facebook.presto.plugin.jdbc.JdbcErrorCode.JDBC_ERROR;
 import static com.facebook.presto.spi.StandardErrorCode.ALREADY_EXISTS;
+import static com.facebook.presto.spi.StandardErrorCode.NOT_SUPPORTED;
 import static com.facebook.presto.spi.type.VarbinaryType.VARBINARY;
 import static com.facebook.presto.spi.type.IntegerType.INTEGER;
 import static com.facebook.presto.spi.type.VarcharType.UNBOUNDED_LENGTH;
@@ -72,12 +70,44 @@ public class HanaClient
     }
 
     @Override
-    protected String toSqlType(Type type)
-    {
-        log.info("toSqlType.displayName:" + type.getDisplayName() + ",simpleName:" + type.getJavaType().getSimpleName());
-        String sqlType = super.toSqlType(type);
-        log.info("sqlType:" + sqlType);
-        return sqlType;
+    public void createTable(ConnectorSession session, ConnectorTableMetadata tableMetadata) {
+        throw new PrestoException(NOT_SUPPORTED, "createTable");
+    }
+
+    @Override
+    protected JdbcOutputTableHandle createTable(ConnectorTableMetadata tableMetadata, ConnectorSession session, String tableName) throws SQLException {
+        throw new PrestoException(NOT_SUPPORTED, "createTable.");
+    }
+
+    @Override
+    public void dropTable(JdbcIdentity identity, JdbcTableHandle handle) {
+        throw new PrestoException(NOT_SUPPORTED, "dropTable");
+    }
+
+
+    @Override
+    public void renameTable(JdbcIdentity identity, JdbcTableHandle handle, SchemaTableName newTable) {
+        throw new PrestoException(NOT_SUPPORTED, "renameTable");
+    }
+
+    @Override
+    protected void renameTable(JdbcIdentity identity, String catalogName, SchemaTableName oldTable, SchemaTableName newTable) {
+        throw new PrestoException(NOT_SUPPORTED, "renameTable.");
+    }
+
+    @Override
+    public void addColumn(JdbcIdentity identity, JdbcTableHandle handle, ColumnMetadata column) {
+        throw new PrestoException(NOT_SUPPORTED, "addColumn");
+    }
+
+    @Override
+    public void renameColumn(JdbcIdentity identity, JdbcTableHandle handle, JdbcColumnHandle jdbcColumn, String newColumnName) {
+        throw new PrestoException(NOT_SUPPORTED, "renameColumn");
+    }
+
+    @Override
+    public void dropColumn(JdbcIdentity identity, JdbcTableHandle handle, JdbcColumnHandle column) {
+        throw new PrestoException(NOT_SUPPORTED, "dropColumn");
     }
 
 
