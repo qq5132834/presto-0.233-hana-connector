@@ -136,25 +136,26 @@
             <artifactId>saphana-jdbc</artifactId>
             <version>1.1.0</version>
             <scope>system</scope>
-            <systemPath>/Volumes/D/github/hana/presto-saphana/libs/saphana-jdbc-1.1.0.jar</systemPath>
+            <systemPath>${basedir}/libs/saphana-jdbc-1.1.0.jar</systemPath>
         </dependency>
 
 
     </dependencies>
 
-    <!--
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>
-            </plugin>
-        </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/libs</directory>
+                <targetPath>presto-saphana-0.233/</targetPath>
+                <includes>
+                    <include>*.jar</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
-    -->
+
+
+
 
 
 </project>

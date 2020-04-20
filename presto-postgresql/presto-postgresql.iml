@@ -10,7 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.facebook.presto:presto-base-jdbc:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-base-jdbc" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:bootstrap:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:log:0.190" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.airlift:concurrent:0.190" level="project" />
@@ -49,7 +49,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-guava:2.9.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.8" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-main:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Maven: com.esri.geometry:esri-geometry-api:2.2.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-geospatial-toolkit:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.locationtech.jts:jts-core:1.16.1" level="project" />
@@ -171,10 +171,19 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.lucene:lucene-analyzers-common:7.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.jsonwebtoken:jjwt:0.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-plugin-toolkit:0.233" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: jdk.tools:jdk.tools:1.8">
+        <CLASSES>
+          <root url="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/lib/tools.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-tpch:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.airlift.tpch:tpch:0.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-tests:0.233" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-main:test-jar:tests:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-main" scope="TEST" production-on-test="" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jdbi:jdbi3-core:3.4.0" level="project" />

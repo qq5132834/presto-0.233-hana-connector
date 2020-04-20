@@ -1,0 +1,13 @@
+com/facebook/presto/sap/HanaClientModule.class
+com/facebook/presto/sap/HanaColumn.class
+com/facebook/presto/sap/HanaConnectorId.class
+com/facebook/presto/sap/HanaClientModule$TypeDeserializer$1.class
+com/facebook/presto/sap/HanaConfig.class
+com/facebook/presto/sap/HanaClient.class
+com/facebook/presto/sap/HanaConnector.class
+com/facebook/presto/sap/HanaPlugin.class
+com/facebook/presto/sap/HanaClientModule$TypeDeserializer.class
+com/facebook/presto/sap/HanaMock.class
+com/facebook/presto/sap/HanaTable.class
+com/facebook/presto/sap/HanaColumnData.class
+com/facebook/presto/sap/HanaColumnHandle.class

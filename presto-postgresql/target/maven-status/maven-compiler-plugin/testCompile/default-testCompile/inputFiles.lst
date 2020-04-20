@@ -1,6 +1,0 @@
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/TestPostgreSqlPlugin.java
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/TestPostgreSqlDistributedQueries.java
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/TestPostgreSqlIntegrationSmokeTest.java
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/PostgreSqlQueryRunner.java
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/TestPostgreSqlCaseInsensitiveMapping.java
-/Volumes/D/github/hana/presto-postgresql/src/test/java/com/facebook/presto/plugin/postgresql/TestPostgreSqlTypeMapping.java

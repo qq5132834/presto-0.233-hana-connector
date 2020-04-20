@@ -1,0 +1,11 @@
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConfig.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaMock.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConnectorId.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaConnector.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumn.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumnHandle.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaClientModule.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaTable.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaColumnData.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaClient.java
+/Volumes/D/github/hana/presto-saphana/src/main/java/com/facebook/presto/sap/HanaPlugin.java
