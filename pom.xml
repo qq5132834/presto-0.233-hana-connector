@@ -90,6 +90,10 @@
         <module>presto-postgresql</module>
         <module>presto-saphana</module>
         <module>presto-orc</module>
+        <module>presto-hive</module>
+        <module>presto-hive-common</module>
+        <module>presto-hive-hadoop2</module>
+        <module>presto-hive-metastore</module>
     </modules>
 
     <dependencyManagement>
