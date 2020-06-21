@@ -95,6 +95,7 @@
         <module>presto-hive-common</module>
         <module>presto-hive-hadoop2</module>
         <module>presto-hive-metastore</module>
+        <module>presto-parser</module>
     </modules>
 
     <dependencyManagement>
