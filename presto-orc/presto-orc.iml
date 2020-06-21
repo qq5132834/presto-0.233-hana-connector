@@ -175,7 +175,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-parser:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-parser" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Maven: org.antlr:antlr4-runtime:4.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.9.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.beanshell:bsh:2.0b4" level="project" />

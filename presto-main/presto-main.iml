@@ -28,7 +28,7 @@
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp-urlconnection:3.9.0" level="project" />
-    <orderEntry type="library" name="Maven: com.facebook.presto:presto-parser:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-parser" />
     <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.presto:presto-matching:0.233" level="project" />
     <orderEntry type="library" name="Maven: com.facebook.presto:presto-memory-context:0.233" level="project" />
@@ -174,7 +174,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.197" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-tpch:0.233" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-parser:test-jar:tests:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-parser" scope="TEST" production-on-test="" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-spi:test-jar:tests:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.openjdk.jmh:jmh-core:1.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.sf.jopt-simple:jopt-simple:4.6" level="project" />

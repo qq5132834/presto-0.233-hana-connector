@@ -62,7 +62,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm-analysis:6.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-client:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okhttp3:okhttp-urlconnection:3.9.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-parser:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-parser" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Maven: org.antlr:antlr4-runtime:4.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-matching:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-memory-context:0.233" level="project" />

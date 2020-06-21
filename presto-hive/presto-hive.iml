@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-test-sources/test-annotations" isTestSource="true" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -229,7 +230,7 @@
     </orderEntry>
     <orderEntry type="module" module-name="presto-main" scope="TEST" production-on-test="" />
     <orderEntry type="module" module-name="presto-hive-metastore" scope="TEST" production-on-test="" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-parser:0.233" level="project" />
+    <orderEntry type="module" module-name="presto-parser" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Maven: org.antlr:antlr4-runtime:4.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.facebook.presto:presto-tests:0.233" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
