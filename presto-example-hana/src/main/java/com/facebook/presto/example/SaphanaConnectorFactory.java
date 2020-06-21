@@ -32,7 +32,7 @@ public class SaphanaConnectorFactory
     @Override
     public String getName()
     {
-        return "example-hana";
+        return "zuk";
     }
 
     @Override
