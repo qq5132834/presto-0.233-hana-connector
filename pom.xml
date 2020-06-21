@@ -83,6 +83,7 @@
     <modules>
         <module>presto-main</module>
         <module>presto-example-http</module>
+        <module>presto-example-hana</module>
         <module>presto-mysql</module>
         <module>presto-cassandra</module>
         <module>presto-sics-jdbc</module>
