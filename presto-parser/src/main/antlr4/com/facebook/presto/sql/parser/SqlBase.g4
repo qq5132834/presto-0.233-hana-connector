@@ -49,6 +49,7 @@ statement
     | DROP TABLE (IF EXISTS)? qualifiedName                            #dropTable
     | INSERT INTO qualifiedName columnAliases? query                   #insertInto
     | DELETE FROM qualifiedName (WHERE booleanExpression)?             #delete
+    | UPDATE qualifiedName SET updateColumnAliases  (WHERE booleanExpression)?  #update
     | ALTER TABLE from=qualifiedName RENAME TO to=qualifiedName        #renameTable
     | ALTER TABLE tableName=qualifiedName
         RENAME COLUMN from=identifier TO to=identifier                 #renameColumn
@@ -295,6 +296,10 @@ aliasedRelation
 
 columnAliases
     : '(' identifier (',' identifier)* ')'
+    ;
+
+updateColumnAliases
+    :  identifier '=' expression  (',' identifier '=' expression )*
     ;
 
 relationPrimary
@@ -601,6 +606,9 @@ DATE: 'DATE';
 DAY: 'DAY';
 DEALLOCATE: 'DEALLOCATE';
 DELETE: 'DELETE';
+
+UPDATE: 'UPDATE';
+
 DESC: 'DESC';
 DESCRIBE: 'DESCRIBE';
 DETERMINISTIC: 'DETERMINISTIC';
