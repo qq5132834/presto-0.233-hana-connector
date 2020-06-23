@@ -199,6 +199,7 @@ nullCallClause
 queryNoWith:
       queryTerm
       (ORDER BY sortItem (',' sortItem)*)?
+      (OFFSET offset=INTEGER_VALUE)?  //添加一个分页偏移量
       (LIMIT limit=(INTEGER_VALUE | ALL))?
     ;
 
@@ -664,6 +665,7 @@ LEFT: 'LEFT';
 LEVEL: 'LEVEL';
 LIKE: 'LIKE';
 LIMIT: 'LIMIT';
+OFFSET: 'OFFSET';
 LOCALTIME: 'LOCALTIME';
 LOCALTIMESTAMP: 'LOCALTIMESTAMP';
 LOGICAL: 'LOGICAL';
