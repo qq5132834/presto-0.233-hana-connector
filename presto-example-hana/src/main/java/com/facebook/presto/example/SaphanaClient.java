@@ -25,15 +25,11 @@ import static java.util.Objects.requireNonNull;
 public class SaphanaClient
 {
     private static final Logger log = Logger.get(SaphanaClient.class);
-    private static final String SCHEMA = "sics_pod_schema";
-    private static final String DRIVER = "com.sap.db.jdbc.Driver";
-    private static final String URL = "jdbc:sap://192.168.152.171:39015?currentschema="+SCHEMA;
-    private static final String USER = "SYSTEM";
-    private static final String PASSWORD = "sicsPoD2020";
 
+    private static final String SCHEMA = "zuk_schema";
+    private static List<String> tables = new ArrayList<>();
     private static Map<String, List<String>> schemaTables = new HashMap<>();         //schema与table list关系
     private static Map<String, List<SaphanaColumn>> tableColumns = new HashMap<>();  //table与column list关系
-
 
     public static String getSCHEMA(){
         return SCHEMA;
@@ -41,10 +37,9 @@ public class SaphanaClient
 
     static {
         //初始化表
-        List<String> tables = new ArrayList<>();
         tables.add("user");
         tables.add("company");
-        schemaTables.put("sics_pod_schema", tables);
+        schemaTables.put(SCHEMA, tables);
 
         //初始化字段
         List<SaphanaColumn> columns1 = new ArrayList<>();
@@ -56,6 +51,7 @@ public class SaphanaClient
         columns2.add(new SaphanaColumn("company", "text", "VARCHAR", 20));
         columns2.add(new SaphanaColumn("company", "value", "BIGINT", 10));
         tableColumns.put("company", columns2);
+        
     }
 
     @Inject
@@ -99,33 +95,7 @@ public class SaphanaClient
             return tableColumns.get(tableName);
         }
 
-        Connection con = this.getConnection();
-        DatabaseMetaData databaseMetaData = con.getMetaData();
-        ResultSet rs = databaseMetaData.getColumns(null, null, tableName.toUpperCase(), null);
-        List<SaphanaColumn> columns = null;
-        while(rs.next()) {
-            if(columns==null){
-                columns = new ArrayList<>();
-            }
-            String columnName = rs.getString("COLUMN_NAME");
-            int dataType = rs.getInt("DATA_TYPE");
-            String typeName = rs.getString("TYPE_NAME");
-            int columnSize = rs.getInt("COLUMN_SIZE");
-
-            SaphanaColumn saphanaColumn = new SaphanaColumn();
-            saphanaColumn.setTableName(tableName);
-            saphanaColumn.setColumnName(columnName);
-            saphanaColumn.setTypeName(typeName);
-            saphanaColumn.setColumnSize(columnSize);
-
-            columns.add(saphanaColumn);
-        }
-        closeConnection(con, null);
-
-        tableColumns.put(tableName.toUpperCase(), columns);
-
-        log.info("getTableColumn.tableName:" + tableName + ",columns:" + JSONObject.toJSONString(columns));
-        return columns;
+        return new ArrayList<>();
     }
 
     /***
@@ -139,42 +109,8 @@ public class SaphanaClient
         if(schemaTables.get(schema) != null){
             return schemaTables.get(schema);
         }
-
-        List<String> list = new ArrayList<>();
-        try {
-            Connection con = this.getConnection();
-            DatabaseMetaData databaseMetaData = con.getMetaData();
-            ResultSet rs = databaseMetaData.getTables(null, schema.toUpperCase(), null, new String[]{"TABLE"});
-            log.info("schema:" + schema.toUpperCase());
-            while (rs.next()){
-
-                String tableName = rs.getString("TABLE_NAME");
-                log.info(tableName);
-                list.add(tableName);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        //缓存起来
-        schemaTables.put(schema.toUpperCase(),list);
-
-        log.info("getTables:" + JSONObject.toJSONString(list));
-        return list;
+        return new ArrayList<>();
     }
 
-    private Connection getConnection() throws Exception {
-        Class.forName(DRIVER);
-        return DriverManager.getConnection(URL, USER, PASSWORD);
-    }
-
-    private void closeConnection(Connection con, Statement stmt) throws Exception {
-        if (stmt != null) {
-            stmt.close();
-        }
-        if (con != null) {
-            con.close();
-        }
-    }
 
 }
