@@ -26,7 +26,7 @@ public class SaphanaClient
 {
     private static final Logger log = Logger.get(SaphanaClient.class);
 
-    public static final String SCHEMA = "zuk_schema";
+    public static final String SCHEMA = "schema";
     public static List<String> tables = new ArrayList<>();
     public static Map<String, List<String>> SCHEMA_TABLES = new HashMap<>();         //schema与table list关系
     public static Map<String, List<SaphanaColumn>> TABLES_TABLES_COLUMNS = new HashMap<>();  //table与column list关系

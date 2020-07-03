@@ -1,4 +1,4 @@
-#Fri Jul 03 16:22:29 CST 2020
+#Fri Jul 03 17:03:59 CST 2020
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaSplitManager.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleSaphana.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleSplit.java=1592729197000
@@ -34,7 +34,7 @@ configuration*?=3D8994895CFBC0CD14A02678C63847E8F9F7C7C5
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConnectorId.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleRecordSetProvider.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaHandleResolver.java=1592729197000
-/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaClient.java=1593764437000
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaClient.java=1593766252000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestSaphanaColumnData.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleTable.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleClient.java=1592729197000
@@ -43,7 +43,7 @@ configuration*?=3D8994895CFBC0CD14A02678C63847E8F9F7C7C5
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestDemo.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaConfig.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/sap/TestExampleColumnHandle.java=1592729197000
-/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaMetadata.java=1593764468000
+/Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaMetadata.java=1593767003000
 /Volumes/D/github/hana/presto-example-hana/src/test/java/com/facebook/presto/example/TestExampleRecordSetProvider.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaDemo.java=1592729197000
 /Volumes/D/github/hana/presto-example-hana/src/main/java/com/facebook/presto/example/SaphanaColumnData.java=1592729197000

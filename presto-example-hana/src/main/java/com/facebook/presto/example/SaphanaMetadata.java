@@ -70,6 +70,10 @@ public class SaphanaMetadata
     public SaphanaTableHandle getTableHandle(ConnectorSession session, SchemaTableName tableName)
     {
         log.info("getTableHandle.schema:" + tableName.getSchemaName() + ",tableName:" + tableName.getTableName());
+        log.info("session:" + session.getClass().getName());
+
+        log.info("user:" + session.getUser());
+        log.info("extra:" + JSONObject.toJSONString(session.getIdentity().getExtraCredentials()));
 
         if (!listSchemaNames(session).contains(tableName.getSchemaName())) {
             return null;
@@ -260,16 +264,24 @@ public class SaphanaMetadata
      */
     private ConnectorTableMetadata getTableMetadataFromHana(SchemaTableName tableName)
     {
-        //判断schema是否存在
-        if(SaphanaClient.SCHEMA.equals(tableName.getSchemaName())){
-            return null;
-        }
+        log.info("getTableMetadataFromHana:" + tableName.getSchemaName() + "," + tableName.getTableName());
+//        //判断schema是否存在
+//        if(SaphanaClient.SCHEMA.equals(tableName.getSchemaName())){
+//            return null;
+//        }
 
         SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (saphanaTable == null) {
             return null;
         }
-        return new ConnectorTableMetadata(tableName, saphanaTable.getColumnsMetadata());
+
+        log.info("saphanaTable.tableName:" + saphanaTable.getTableName());
+
+        ConnectorTableMetadata connectorTableMetadata = new ConnectorTableMetadata(tableName, saphanaTable.getColumnsMetadata());
+
+        log.info("connectorTableMetadata:");
+
+        return connectorTableMetadata;
     }
 
     private List<SchemaTableName> listTables(ConnectorSession session, SchemaTablePrefix prefix)
