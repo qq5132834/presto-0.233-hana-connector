@@ -97,19 +97,12 @@ public class SaphanaMetadata
     @Override
     public List<String> listSchemaNames(ConnectorSession session)
     {
-        List<String> list = listSchemaNames();
+        List<String> list = new ArrayList<>();
+        list.add(SaphanaClient.SCHEMA);
         log.info("listSchemaNames:" + JSONObject.toJSONString(list));
         return list;
     }
 
-    public List<String> listSchemaNames()
-    {
-        List<String> list = new ArrayList<>();
-
-        //添加一个hana的schema信息
-        list.add(SaphanaClient.getSCHEMA());
-        return list;
-    }
 
     @Override
     public List<ConnectorTableLayoutResult> getTableLayouts(ConnectorSession session, ConnectorTableHandle table, Constraint<ColumnHandle> constraint, Optional<Set<ColumnHandle>> desiredColumns)
@@ -160,7 +153,7 @@ public class SaphanaMetadata
     @Override
     public List<SchemaTableName> listTables(ConnectorSession session, String schemaNameOrNull)
     {
-        log.info("listTables");
+        log.info("listTables:" + schemaNameOrNull);
         Set<String> schemaNames = null;
         if (schemaNameOrNull != null) {
             schemaNames = ImmutableSet.of(schemaNameOrNull);
@@ -170,9 +163,9 @@ public class SaphanaMetadata
 
         for (String schemaName : schemaNames) {
             //获取hana中schema下的表
-            if(SaphanaClient.getSCHEMA().equals(schemaName)){
+            if(SaphanaClient.SCHEMA.equals(schemaName)){
                 builder.clear();
-                List<String> list = this.saphanaClient.getTables("sics_pod_schema");
+                List<String> list = SaphanaClient.SCHEMA_TABLES.get(SaphanaClient.SCHEMA);
                 for (String tn: list) {
                     log.info("tn:" + tn);
                     builder.add(new SchemaTableName(schemaName, tn));
@@ -268,9 +261,10 @@ public class SaphanaMetadata
     private ConnectorTableMetadata getTableMetadataFromHana(SchemaTableName tableName)
     {
         //判断schema是否存在
-        if (!listSchemaNames().contains(tableName.getSchemaName())) {
+        if(SaphanaClient.SCHEMA.equals(tableName.getSchemaName())){
             return null;
         }
+
         SaphanaTable saphanaTable = this.saphanaClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (saphanaTable == null) {
             return null;
